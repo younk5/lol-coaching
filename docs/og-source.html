@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>OG source — Hyoga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #05070A;
+    background-image: radial-gradient(600px 400px at 78% -10%, rgba(142, 208, 194, 0.12), transparent 70%);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    color: #F2F5F7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 72px 84px;
+    position: relative;
+  }
+  /* linha de precisão diagonal sutil no canto */
+  body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 49.9%, rgba(142, 208, 194, 0.16) 50%, transparent 50.1%);
+  }
+  .emblem { display: flex; gap: 10px; margin-bottom: 44px; }
+  .emblem svg { width: 52px; height: 52px; }
+  .nome { font-size: 128px; font-weight: 700; letter-spacing: 0.02em; line-height: 1; }
+  .tagline {
+    margin-top: 28px;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8ED0C2;
+  }
+  .linha {
+    width: 480px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(142, 208, 194, 0.7), transparent);
+    margin: 40px 0 30px;
+  }
+  .provas { font-size: 24px; color: #9AA6B2; letter-spacing: 0.02em; }
+  .provas strong { color: #F2F5F7; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="emblem">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M18 46 L34 18" stroke="#8ED0C2" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M46 46 L30 18" stroke="#F2F5F7" stroke-width="6" stroke-linecap="round" fill="none" opacity=".9"/>
+    </svg>
+  </div>
+
+  <div class="nome">HYOGA</div>
+  <div class="tagline">Coaching de Jungle</div>
+  <div class="linha"></div>
+  <div class="provas">
+    <strong>Ex-jogador profissional</strong> · Top 1 da soloQ BR · 5× Challenger
+  </div>
+</body>
+</html>

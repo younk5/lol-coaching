@@ -4,5 +4,4 @@
 User-agent: *
 Allow: /
 
-# ATENÇÃO: depois de definir o domínio final, descomente a linha abaixo:
-# Sitemap: https://SEU-DOMINIO/sitemap.xml
+Sitemap: https://hyogacoach.vercel.app/sitemap.xml
