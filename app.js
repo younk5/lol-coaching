@@ -36,27 +36,61 @@
      Continua respeitando prefers-reduced-motion (salto instantâneo). */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  const forceMotion = () => document.documentElement.classList.contains('force-motion');
+
+  const smoothScroll = (target) => {
+    if (reduceMotion.matches && !forceMotion()) {
+      target.scrollIntoView(); // modo acessível: salto direto
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  /* URL sempre limpa: remove qualquer # do endereço sem recarregar.
+     (try/catch por segurança no modo file://) */
+  const cleanUrl = () => {
+    try {
+      history.replaceState(null, '', location.pathname + location.search);
+    } catch {}
+  };
+
+  /* Clicou num link de âncora: rola suave e NÃO suja a URL com # */
   document.addEventListener('click', (e) => {
     const anchor = e.target.closest('a[href^="#"]');
     if (!anchor) return;
 
-    const id = anchor.getAttribute('href').slice(1);
-    if (!id) return;
-
-    const target = document.getElementById(id);
-    if (!target) return;
-
     e.preventDefault();
 
-    if (reduceMotion.matches && !document.documentElement.classList.contains('force-motion')) {
-      target.scrollIntoView();
+    const id = anchor.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : null;
+
+    if (target) {
+      smoothScroll(target);
     } else {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Logo (href="#") ou âncora sem destino: volta ao topo
+      if (reduceMotion.matches && !forceMotion()) {
+        window.scrollTo({ top: 0 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
-    // Atualiza o endereço sem pular (o scroll já foi feito)
-    history.pushState(null, '', '#' + id);
+    cleanUrl();
   });
+
+  /* Chegou com # no endereço (ex.: link compartilhado com #coaching):
+     rola até a seção e limpa a URL em seguida. */
+  if (location.hash) {
+    const target = document.getElementById(location.hash.slice(1));
+
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      const alreadyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (!alreadyInView) smoothScroll(target);
+    }
+
+    cleanUrl();
+  }
 
   /* ============================================================
      MOBILE MENU — abrir/fechar com teclado
