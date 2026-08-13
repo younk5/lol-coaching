@@ -23,6 +23,34 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
+  /* Scroll suave para âncoras (logo, menu, "ver como funciona").
+     Feito em JS porque alguns navegadores ignoram o scroll-behavior
+     do CSS quando o sistema operacional tem animações desativadas.
+     Continua respeitando prefers-reduced-motion (salto instantâneo). */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+
+    const id = anchor.getAttribute('href').slice(1);
+    if (!id) return;
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    e.preventDefault();
+
+    if (reduceMotion.matches) {
+      target.scrollIntoView();
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Atualiza o endereço sem pular (o scroll já foi feito)
+    history.pushState(null, '', '#' + id);
+  });
+
   /* ============================================================
      MOBILE MENU — abrir/fechar com teclado
   ============================================================ */
