@@ -36,6 +36,9 @@
   <link rel="stylesheet" href="style.css">
   <script defer src="app.js"></script>
 
+  <!-- Vercel Web Analytics: ativa automaticamente após o deploy (não carrega em dev local) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <!-- ===== Dados estruturados (somente informações reais e verificáveis) ===== -->
   <script type="application/ld+json">
   {
@@ -606,6 +609,76 @@
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.29a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
             Fazer coaching no Discord
           </a>
+        </div>
+
+        <!-- Formulário opcional (secundário — nunca compete com o Discord) -->
+        <div class="contact-form-wrap" data-reveal>
+          <p class="contact-form-title">Prefere escrever antes? Deixe uma mensagem rápida.</p>
+
+          <form class="contact-form" data-form novalidate>
+            <div class="field">
+              <label for="f-nome">Nome</label>
+              <input id="f-nome" name="nome" type="text" required maxlength="80" autocomplete="name" placeholder="Seu nome ou nick">
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-elo">Elo atual</label>
+                <select id="f-elo" name="elo" required>
+                  <option value="">Selecione</option>
+                  <option value="ferro">Ferro</option>
+                  <option value="bronze">Bronze</option>
+                  <option value="prata">Prata</option>
+                  <option value="ouro">Ouro</option>
+                  <option value="platina">Platina</option>
+                  <option value="diamante">Diamante</option>
+                  <option value="mestre">Mestre</option>
+                  <option value="grao-mestre">Grão-Mestre</option>
+                  <option value="desafiante">Desafiante</option>
+                  <option value="nunca">Ainda não jogo ranqueado</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-servidor">Servidor</label>
+                <select id="f-servidor" name="servidor" required>
+                  <option value="">Selecione</option>
+                  <option value="br">Brasil (BR)</option>
+                  <option value="lan">América Latina Norte (LAN)</option>
+                  <option value="las">América Latina Sul (LAS)</option>
+                  <option value="na">América do Norte (NA)</option>
+                  <option value="euw">Europa (EUW)</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-objetivo">Objetivo</label>
+              <input id="f-objetivo" name="objetivo" type="text" required maxlength="300" placeholder="Ex.: subir de platina para diamante na jungle">
+            </div>
+
+            <div class="field">
+              <label for="f-experiencia">Experiência na jungle</label>
+              <select id="f-experiencia" name="experiencia" required>
+                <option value="">Selecione</option>
+                <option value="nunca">Nunca joguei de jungle</option>
+                <option value="iniciante">Iniciante</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="avancado">Avançado</option>
+              </select>
+            </div>
+
+            <p class="field-error" data-form-error role="alert" hidden></p>
+
+            <button class="btn btn--primary" type="submit" data-track="form">Enviar mensagem</button>
+            <p class="field-note">A mensagem vai direto para o Discord do Hyoga — sem cadastro.</p>
+          </form>
+
+          <div class="contact-success" data-form-success hidden>
+            <p class="contact-success-title"><strong>Mensagem enviada!</strong></p>
+            <p>O Hyoga responde pelo Discord. Quer adiantar? Entre direto no servidor:</p>
+            <a class="btn btn--primary" href="https://discord.gg/8HQFCRyN2" target="_blank" rel="noopener" data-track="discord">Entrar no Discord</a>
+          </div>
         </div>
       </div>
     </section>

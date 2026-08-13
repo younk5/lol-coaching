@@ -1150,6 +1150,111 @@ h3 {
 }
 
 /* ============================================================
+   FORMULÁRIO (opcional, secundário ao Discord)
+============================================================ */
+.contact-form-wrap {
+  max-width: 560px;
+  margin: var(--space-6) auto 0;
+  text-align: left;
+}
+
+.contact-form-title {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 0.9375rem;
+  width: 100%;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--cyan);
+}
+
+.field input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.field-error {
+  color: var(--error);
+  font-size: 0.875rem;
+  border: 1px solid rgba(255, 92, 92, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+}
+
+.field-note {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* Confirmação de envio (substitui o formulário) */
+.contact-success {
+  text-align: center;
+  border: 1px solid rgba(61, 220, 132, 0.4);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.contact-success-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+}
+
+.contact-success p {
+  color: var(--text-secondary);
+  max-width: 45ch;
+}
+
+@media (max-width: 560px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
    FOOTER
 ============================================================ */
 .site-footer {

@@ -96,6 +96,58 @@
   });
 
   /* ============================================================
+     FORM — envio para a função serverless (sem recarregar a página)
+  ============================================================ */
+  const form = $('[data-form]');
+
+  if (form) {
+    const errBox = $('[data-form-error]');
+    const successBox = $('[data-form-success]');
+    const submitBtn = form.querySelector('[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errBox.hidden = true;
+
+      // Validação nativa do navegador (o servidor valida de novo)
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = 'Enviando...';
+
+      const body = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok) {
+          form.hidden = true;
+          successBox.hidden = false;
+        } else {
+          errBox.textContent = json.error || 'Não foi possível enviar. Tente novamente.';
+          errBox.hidden = false;
+        }
+      } catch {
+        errBox.textContent = 'Falha de conexão. Verifique sua internet e tente de novo.';
+        errBox.hidden = false;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  }
+
+  /* ============================================================
      ANIMATIONS — revelação suave ao rolar (IntersectionObserver)
      Elementos com data-reveal ficam visíveis quando entram na tela.
      Sem IntersectionObserver (navegadores antigos), fica tudo visível.
