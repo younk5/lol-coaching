@@ -1477,8 +1477,8 @@ h3 {
 
 /* ============================================================
    MOVIMENTO REDUZIDO (acessibilidade)
-   Obs.: o sufixo ?motion=on no endereço FORÇA as animações
-   (modo de pré-visualização do dono — não afeta visitantes).
+   Obs.: as animações ficam LIGADAS por padrão; o sufixo ?motion=off
+   no endereço restaura o modo acessível (sem animações).
 ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html:not(.force-motion) {

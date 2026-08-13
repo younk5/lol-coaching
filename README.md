@@ -48,7 +48,7 @@ Não existe "sistema" por trás: quando alguém acessa o site, o navegador baixa
 
    Depois abra `http://localhost:8080` no navegador. Para parar: `Ctrl + C`.
 
-> 💡 **Dica:** se o seu Windows tiver "Efeitos de animação" desligados (Configurações → Acessibilidade → Efeitos visuais), o navegador desativa as animações do site por respeito à acessibilidade. Para ver as animações mesmo assim, adicione `?motion=on` ao endereço (ex.: `http://localhost:8080/?motion=on`).
+> 💡 **Dica:** as animações do site ficam **ligadas por padrão** — mesmo que o Windows tenha "Efeitos de animação" desligados (Configurações → Acessibilidade → Efeitos visuais). Só use `?motion=off` no endereço se quiser ver o site no modo sem animações (acessível).
 
 ---
 

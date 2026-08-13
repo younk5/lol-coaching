@@ -11,10 +11,10 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  /* Pré-visualização: ?motion=on no endereço FORÇA as animações,
-     mesmo com prefers-reduced-motion ativo no sistema.
-     (Ferramenta do dono — visitantes continuam sem ela.) */
-  if (new URLSearchParams(location.search).get('motion') === 'on') {
+  /* Animações LIGADAS por padrão — mesmo quando o sistema operacional
+     tem "Efeitos de animação" desligados (prefers-reduced-motion).
+     Para restaurar o modo acessível sem animações: ?motion=off no endereço. */
+  if (new URLSearchParams(location.search).get('motion') !== 'off') {
     document.documentElement.classList.add('force-motion');
   }
 

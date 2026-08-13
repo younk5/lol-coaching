@@ -191,7 +191,7 @@ Labels sempre visíveis (nunca só placeholder). Botão de envio: primário. Fee
 
 **Proibido:** parallax, partículas, background animado, loops contínuos, pulse infinito, marquee.
 
-**`prefers-reduced-motion`:** todas as animações e transições desativadas (ou reduzidas a fade de 1ms); revelações de scroll mostram tudo imediatamente.
+**`prefers-reduced-motion`:** por padrão as animações ficam **LIGADAS mesmo com o sistema pedindo menos movimento** (decisão do dono). Para o modo acessível sem animações, use `?motion=off` no endereço — aí todas as animações/transições são reduzidas a 1ms e as revelações de scroll aparecem imediatamente.
 
 ---
 
@@ -221,7 +221,7 @@ Labels sempre visíveis (nunca só placeholder). Botão de envio: primário. Fee
 - [ ] Menu mobile: `aria-expanded`, fechar com Esc, foco retorna ao botão.
 - [ ] Imagens: `alt` descritivo (ou `alt=""` para decorativas); sem fotos do atleta no site (decisão do dono).
 - [ ] Formulário: `<label for>` em todos os campos, `aria-describedby` para mensagens de erro, `required` + `aria-required`.
-- [ ] `prefers-reduced-motion` respeitado (ver §7).
+- [ ] `prefers-reduced-motion`: modo acessível via `?motion=off` (ver §7).
 - [ ] Zoom 200% sem quebra de layout; leitura por teclado 100%.
 - [ ] Idioma declarado: `<html lang="pt-BR">`.
 
