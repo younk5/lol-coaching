@@ -91,18 +91,18 @@ O site deve parecer **um site premium de um pro player de esports** — não um 
 |---|---|---|
 | `--bg` | `#05070A` | Fundo base (quase preto, azul profundo) |
 | `--bg-2` | `#0B0F16` | Fundo secundário (cards, seções alternadas) |
-| `--cyan` | `#00E5FF` | Energia: CTAs, eyebrows, destaques, foco |
-| `--cyan-hover` | `#00B8CC` | Hover do ciano |
+| `--cyan` | `#8ED0C2` | Energia: CTAs, eyebrows, destaques, foco — tom **verde-água dessaturado dos Kindred** (Lamb), não ciano neon |
+| `--cyan-hover` | `#6FB8A8` | Hover do acento |
 | `--text-primary` | `#F2F5F7` | Títulos e texto principal |
 | `--text-secondary` | `#9AA6B2` | Parágrafos, legendas |
-| `--border` | `#1C232C` | Bordas, hairlines, divisores |
+| `--border` | `#202B31` | Bordas, hairlines, divisores |
 | `--success` | `#3DDC84` | Feedback positivo (formulário) |
 | `--error` | `#FF5C5C` | Feedback de erro (formulário) |
 
 **Derivados (glow e luz):**
-- `--glow-soft`: `0 0 24px rgba(0, 229, 255, 0.18)` — sombra dos botões primários
-- `--glow-strong`: `0 0 40px rgba(0, 229, 255, 0.3)` — hover do botão primário
-- `--spotlight`: `radial-gradient(600px 400px at 70% 0%, rgba(0, 229, 255, 0.07), transparent 70%)` — luz do hero
+- `--glow-soft`: `0 0 24px rgba(142, 208, 194, 0.22)` — sombra dos botões primários
+- `--glow-strong`: `0 0 40px rgba(142, 208, 194, 0.35)` — hover do botão primário
+- `--spotlight`: `radial-gradient(600px 400px at 70% 0%, rgba(142, 208, 194, 0.08), transparent 70%)` — luz do hero
 - Overlay de imagem: `linear-gradient(180deg, transparent 55%, #05070A 100%)`
 
 **Regras de uso do ciano (a mais importante):**
@@ -110,7 +110,7 @@ O site deve parecer **um site premium de um pro player de esports** — não um 
 - Ciano para: 1 CTA principal por viewport, eyebrows, detalhes de foco/hover, linhas de precisão.
 - Nunca: fundo ciano inteiro, texto longo em ciano, dois CTAs ciano competindo na mesma tela.
 
-**Contraste (AA):** `#F2F5F7` sobre `#05070A` ≈ 17:1 ✅ · `#9AA6B2` sobre `#05070A` ≈ 7:1 ✅ · `#05070A` sobre `#00E5FF` (texto do botão) ≈ 14:1 ✅ · `#00E5FF` sobre `#05070A` ≈ 12:1 ✅
+**Contraste (AA):** `#F2F5F7` sobre `#05070A` ≈ 17:1 ✅ · `#9AA6B2` sobre `#05070A` ≈ 7:1 ✅ · `#05070A` sobre `#8ED0C2` (texto do botão) ≈ 9:1 ✅ · `#8ED0C2` sobre `#05070A` ≈ 8:1 ✅
 
 ---
 
@@ -130,8 +130,8 @@ O site deve parecer **um site premium de um pro player de esports** — não um 
 ### Botão secundário (ações de apoio: Twitch, Liquipedia, DeepLol, "ver como funciona")
 | Estado | Visual |
 |---|---|
-| Default | Transparente, borda 1px `rgba(0, 229, 255, 0.35)`, texto `--cyan` |
-| Hover | Fundo `rgba(0, 229, 255, 0.08)`, borda `--cyan` |
+| Default | Transparente, borda 1px `rgba(142, 208, 194, 0.35)`, texto `--cyan` |
+| Hover | Fundo `rgba(142, 208, 194, 0.08)`, borda `--cyan` |
 | Focus-visible | Outline 2px `--cyan`, offset 3px |
 
 ### Links de prova de autoridade (Liquipedia, DeepLol)

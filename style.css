@@ -8,21 +8,22 @@
    VARIÁVEIS (design tokens) — painel de controle do site
 ============================================================ */
 :root {
-  /* Cores */
+  /* Cores — acento no tom Kindred (verde-água dessaturado do Lamb),
+     em vez do ciano neon comum em templates de IA */
   --bg: #05070A;
   --bg-2: #0B0F16;
-  --cyan: #00E5FF;
-  --cyan-hover: #00B8CC;
+  --cyan: #8ED0C2;
+  --cyan-hover: #6FB8A8;
   --text-primary: #F2F5F7;
   --text-secondary: #9AA6B2;
-  --border: #1C232C;
+  --border: #202B31;
   --success: #3DDC84;
   --error: #FF5C5C;
 
   /* Luz e brilho */
-  --glow-soft: 0 0 24px rgba(0, 229, 255, 0.18);
-  --glow-strong: 0 0 40px rgba(0, 229, 255, 0.3);
-  --spotlight: radial-gradient(600px 400px at 70% 0%, rgba(0, 229, 255, 0.07), transparent 70%);
+  --glow-soft: 0 0 24px rgba(142, 208, 194, 0.22);
+  --glow-strong: 0 0 40px rgba(142, 208, 194, 0.35);
+  --spotlight: radial-gradient(600px 400px at 70% 0%, rgba(142, 208, 194, 0.08), transparent 70%);
 
   /* Formas */
   --radius-sm: 8px;
@@ -105,7 +106,7 @@ ul[class] {
 }
 
 ::selection {
-  background: rgba(0, 229, 255, 0.25);
+  background: rgba(142, 208, 194, 0.25);
   color: var(--text-primary);
 }
 
@@ -262,11 +263,11 @@ h3 {
 .btn--secondary {
   background: transparent;
   color: var(--cyan);
-  border: 1px solid rgba(0, 229, 255, 0.35);
+  border: 1px solid rgba(142, 208, 194, 0.35);
 }
 
 .btn--secondary:hover {
-  background: rgba(0, 229, 255, 0.08);
+  background: rgba(142, 208, 194, 0.08);
   border-color: var(--cyan);
 }
 
@@ -501,7 +502,7 @@ h3 {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background:
-    radial-gradient(320px 260px at 70% 0%, rgba(0, 229, 255, 0.10), transparent 70%),
+    radial-gradient(320px 260px at 70% 0%, rgba(142, 208, 194, 0.10), transparent 70%),
     var(--bg-2);
   padding: var(--space-4);
   max-width: 460px;
@@ -546,7 +547,7 @@ h3 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cyan);
-  border: 1px solid rgba(0, 229, 255, 0.35);
+  border: 1px solid rgba(142, 208, 194, 0.35);
   border-radius: 999px;
   padding: 4px 12px;
 }
@@ -628,7 +629,7 @@ h3 {
 .sobre-quote {
   margin-top: var(--space-4);
   padding-left: var(--space-3);
-  border-left: 2px solid rgba(0, 229, 255, 0.45);
+  border-left: 2px solid rgba(142, 208, 194, 0.45);
 }
 
 .sobre-quote p {
@@ -929,7 +930,7 @@ h3 {
 
 /* Destaque sutil na primeira sessão */
 .price-card--first {
-  border-color: rgba(0, 229, 255, 0.35);
+  border-color: rgba(142, 208, 194, 0.35);
 }
 
 .price-label {

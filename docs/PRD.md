@@ -137,7 +137,7 @@ Pagamentos, agendamento, login, área do aluno, blog, CMS, multi-idioma, página
 | RNF-04 | **SEO:** title, meta description, canonical, Open Graph, Twitter Cards, JSON-LD (somente dados verdadeiros), robots.txt, sitemap.xml. |
 | RNF-05 | **Segurança:** nenhum segredo no frontend; validação e sanitização client-side **e** server-side; webhook do Discord exclusivamente em variável de ambiente. |
 | RNF-06 | **Manutenibilidade:** CSS organizado por seções com variáveis; JS separado por módulo (navegação, FAQ, tracking, formulário, animações); funções pequenas; Conventional Commits. |
-| RNF-07 | **Design system:** paleta fixa (fundo `#05070A` / `#0B0F16`, ciano `#00E5FF` com hover `#00B8CC`, texto `#F2F5F7` / `#9AA6B2`, bordas `#1C232C`, sucesso `#3DDC84`, erro `#FF5C5C`); container ~1200px; escala de espaçamento 8/16/24/32/48/64/96; tipografia com `clamp()`. |
+| RNF-07 | **Design system:** paleta fixa (fundo `#05070A` / `#0B0F16`, acento Kindred `#8ED0C2` com hover `#6FB8A8`, texto `#F2F5F7` / `#9AA6B2`, bordas `#202B31`, sucesso `#3DDC84`, erro `#FF5C5C`); container ~1200px; escala de espaçamento 8/16/24/32/48/64/96; tipografia com `clamp()`. |
 
 ---
 
