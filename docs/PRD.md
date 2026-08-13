@@ -115,7 +115,7 @@ Pagamentos, agendamento, login, área do aluno, blog, CMS, multi-idioma, página
 |---|---|
 | RF-01 | Página única com as 13 seções na ordem aprovada (ajustável com justificativa de UX). |
 | RF-02 | Header com identidade, navegação por âncoras e CTA do Discord; menu mobile funcional. |
-| RF-03 | Hero com composição forte (tipografia + luz) e painel de identidade (emblema + badge PRO + trajetória) — **sem foto do atleta** (decisão do atleta). |
+| RF-03 | Hero com composição forte (tipografia + luz) e card de credenciais (ficha do jogador) — **sem foto do atleta** (decisão do atleta). |
 | RF-04 | Seções Autoridade/Provas com links reais; links ausentes exibem `[LINK PENDENTE]`. |
 | RF-05 | Seção Coaching descreve a oferta **apenas com dados confirmados** (preço, duração, formato). |
 | RF-06 | FAQ em accordion com ARIA correto (expandir/recolher, `aria-expanded`, teclado). |

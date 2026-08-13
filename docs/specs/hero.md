@@ -19,7 +19,7 @@ Responder em ≤5 segundos: **quem é** (Hyoga, ex-jogador profissional), **por 
 | Stat 2 | "3 contas em top 1/2/3" / "simultaneamente no Challenger" | Atleta |
 | Stat 3 | "5× Challenger" / "5 contas no elo máximo" | Atleta |
 | Stat 4 | "3 times pro" / "CNB · Uppercut · Santos" | Atleta + Leaguepedia |
-| Painel de identidade | Marca (emblema dualidade) + badge "Pro Player" (classificação real do DeepLol) + legenda "Ex-jogador profissional — CNB · Uppercut · Santos" | DeepLol + Leaguepedia |
+| Painel | Card de credenciais do jogador: emblema + "HYOGA" + chip "Pro Player" (classificação real do DeepLol) + ficha (Função, Servidor, SoloQ, Challenger, Times) + links Liquipedia/DeepLol | DeepLol + Leaguepedia |
 
 ## 3. Casos de borda
 
