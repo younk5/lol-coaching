@@ -100,12 +100,21 @@ Não existe "sistema" por trás: quando alguém acessa o site, o navegador baixa
 
 ## 5. Como publicar na internet (Vercel)
 
-No momento do deploy, o passo a passo completo estará aqui. Resumo:
+O site **já está publicado** em: **https://lol-coaching-alpha.vercel.app** 🎉
 
-1. Crie contas gratuitas em **github.com** e **vercel.com**.
-2. Envie a pasta do projeto para o GitHub (te guio no passo a passo).
-3. Na Vercel: **Add New Project** → escolha o repositório → **Deploy**.
-4. O site ganha um endereço automático (ex.: `hyoga-coaching.vercel.app`). Depois dá para conectar um domínio próprio (ex.: `hyoga.gg`).
+**Como funciona a partir de agora:**
+- Qualquer mudança que você fizer nos arquivos e **enviar para o GitHub** (ou que eu fizer por você) é publicada **automaticamente** em ~1 minuto. Nada de passos manuais.
+- Para enviar mudanças, usamos o Git: `git add .` → `git commit -m "mensagem"` → `git push`.
+
+**Onde está cada coisa (conta Vercel, logada como younk5):**
+| Item | Onde |
+|---|---|
+| Painel do projeto | vercel.com → Project **lol-coaching** |
+| Segredo do Discord (webhook) | Project → **Settings** → **Environment Variables** → `DISCORD_WEBHOOK_URL` |
+| Analytics (visitas) | Project → **Analytics** |
+| Performance | Project → **Speed Insights** |
+
+**Trocar o webhook do Discord** (se quiser): edite `DISCORD_WEBHOOK_URL` nas variáveis de ambiente e clique em **Redeploy** (botão nos Deployments).
 
 ---
 
