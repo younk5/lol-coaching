@@ -73,6 +73,29 @@
     }
   });
   /* ============================================================
+     FAQ — accordion acessível (um item aberto por vez)
+  ============================================================ */
+  const faqButtons = $$('.faq-q');
+
+  const closeFaq = () => {
+    faqButtons.forEach((btn) => {
+      btn.setAttribute('aria-expanded', 'false');
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = true;
+    });
+  };
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const wasOpen = btn.getAttribute('aria-expanded') === 'true';
+      closeFaq();
+      if (!wasOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        document.getElementById(btn.getAttribute('aria-controls')).hidden = false;
+      }
+    });
+  });
+
+  /* ============================================================
      ANIMATIONS — revelação suave ao rolar (IntersectionObserver)
      Elementos com data-reveal ficam visíveis quando entram na tela.
      Sem IntersectionObserver (navegadores antigos), fica tudo visível.

@@ -1049,6 +1049,106 @@ h3 {
   }
 }
 
+/* Botão grande (CTA final) */
+.btn--lg {
+  padding: 18px 40px;
+  font-size: 1.0625rem;
+}
+
+/* ============================================================
+   FAQ (accordion acessível)
+============================================================ */
+.faq-container {
+  max-width: 760px;
+}
+
+.faq-list {
+  margin-bottom: var(--space-4);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--text-primary);
+  padding-block: var(--space-3);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.faq-q:hover {
+  color: var(--cyan);
+}
+
+/* Chevron que rotaciona quando aberto */
+.faq-q::after {
+  content: '';
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  transform: rotate(45deg);
+  transition: transform var(--t-med) var(--ease), border-color var(--t-fast) var(--ease);
+}
+
+.faq-q[aria-expanded="true"]::after {
+  transform: rotate(-135deg);
+}
+
+.faq-a {
+  padding-bottom: var(--space-3);
+  animation: faq-open var(--t-med) var(--ease);
+}
+
+.faq-a p {
+  color: var(--text-secondary);
+  max-width: 62ch;
+}
+
+@keyframes faq-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.faq-foot {
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   CTA FINAL
+============================================================ */
+.cta-final {
+  text-align: center;
+}
+
+.cta-final .section-sub {
+  margin-inline: auto;
+}
+
+.cta-final .coach-cta {
+  justify-content: center;
+}
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -1067,6 +1167,22 @@ h3 {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.08em;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.footer-links a:hover {
+  color: var(--cyan);
 }
 
 .footer-note {
