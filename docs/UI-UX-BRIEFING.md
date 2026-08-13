@@ -217,7 +217,7 @@ Labels sempre visíveis (nunca só placeholder). Botão de envio: primário. Fee
 - [ ] Alvos de toque ≥ 44×44px no mobile (CTAs e itens do menu).
 - [ ] FAQ: `button` + `aria-expanded` + `aria-controls`; região com `role="region"`/`aria-labelledby`.
 - [ ] Menu mobile: `aria-expanded`, fechar com Esc, foco retorna ao botão.
-- [ ] Imagens: `alt` descritivo (ou `alt=""` para decorativas); área de foto do hero com `role="img"` + label enquanto for placeholder.
+- [ ] Imagens: `alt` descritivo (ou `alt=""` para decorativas); sem fotos do atleta no site (decisão do dono).
 - [ ] Formulário: `<label for>` em todos os campos, `aria-describedby` para mensagens de erro, `required` + `aria-required`.
 - [ ] `prefers-reduced-motion` respeitado (ver §7).
 - [ ] Zoom 200% sem quebra de layout; leitura por teclado 100%.

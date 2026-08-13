@@ -82,7 +82,7 @@ Não existe "sistema" por trás: quando alguém acessa o site, o navegador baixa
 
 ### Trocar uma imagem
 
-1. Coloque a nova imagem em `assets/images/` **com o mesmo nome** do arquivo atual (ex.: `assets/images/hyoga-foto.webp`).
+1. Coloque a nova imagem em `assets/images/` **com o mesmo nome** do arquivo atual (ex.: `assets/images/sua-imagem.webp`).
 2. Pronto — o site já usa a nova. (Para trocar o nome também, procure o arquivo no `index.html`.)
 
 ### Trocar um link (ex.: seu Discord)

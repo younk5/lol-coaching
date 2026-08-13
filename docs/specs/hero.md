@@ -19,11 +19,11 @@ Responder em ≤5 segundos: **quem é** (Hyoga, ex-jogador profissional), **por 
 | Stat 2 | "3 contas em top 1/2/3" / "simultaneamente no Challenger" | Atleta |
 | Stat 3 | "5× Challenger" / "5 contas no elo máximo" | Atleta |
 | Stat 4 | "3 times pro" / "CNB · Uppercut · Santos" | Atleta + Leaguepedia |
-| Painel de foto | Marca (emblema dualidade) + badge "Pro Player" (classificação real do DeepLol) + legenda "[Sua foto aqui — em breve]" | DeepLol |
+| Painel de identidade | Marca (emblema dualidade) + badge "Pro Player" (classificação real do DeepLol) + legenda "Ex-jogador profissional — CNB · Uppercut · Santos" | DeepLol + Leaguepedia |
 
 ## 3. Casos de borda
 
-- **Sem foto real:** o painel mantém composição forte (marca + badge + legenda). Instrução de substituição por `<img>` fica comentada no HTML para o dono do site.
+- **Sem foto (decisão do atleta):** o painel é de identidade (emblema + badge + trajetória) — não existe área de foto nem imagem falsa.
 - **JS desabilitado / IO indisponível:** elementos `data-reveal` ganham `.is-visible` (fallback) — nunca ficam invisíveis.
 - **Texto longo:** `max-width: 55ch` no subtítulo; stats quebram linha (`flex-wrap`).
 - **Mobile:** grade 7/5 → 1 coluna ≤900px; botões em largura total ≤480px; painel centralizado com `max-width: 460px`.

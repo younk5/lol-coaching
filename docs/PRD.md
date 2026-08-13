@@ -115,7 +115,7 @@ Pagamentos, agendamento, login, área do aluno, blog, CMS, multi-idioma, página
 |---|---|
 | RF-01 | Página única com as 13 seções na ordem aprovada (ajustável com justificativa de UX). |
 | RF-02 | Header com identidade, navegação por âncoras e CTA do Discord; menu mobile funcional. |
-| RF-03 | Hero com composição forte (tipografia + luz) e **área preparada para foto real** — sem foto falsa. |
+| RF-03 | Hero com composição forte (tipografia + luz) e painel de identidade (emblema + badge PRO + trajetória) — **sem foto do atleta** (decisão do atleta). |
 | RF-04 | Seções Autoridade/Provas com links reais; links ausentes exibem `[LINK PENDENTE]`. |
 | RF-05 | Seção Coaching descreve a oferta **apenas com dados confirmados** (preço, duração, formato). |
 | RF-06 | FAQ em accordion com ARIA correto (expandir/recolher, `aria-expanded`, teclado). |
@@ -221,7 +221,7 @@ Pagamentos, agendamento, login, área do aluno, blog, CMS, multi-idioma, página
 | Servidores atendidos (só BR?) | Escopo |
 | Procedimento no Discord após o clique (ex.: abrir ticket? mensagem direta?) | Fluxo de conversão |
 | Idioma (apenas PT-BR?) | Escopo |
-| Foto oficial | Hero (placeholder cobre) |
+| Foto oficial | **Decidido: não usar** — o Hero usa painel de identidade (emblema + badge + trajetória) |
 | Domínio final | Canonical, sitemap, branding |
 | Depoimentos reais | Provas sociais (seção fica pronta para receber) |
 | Meta numérica de conversão | KPIs |
