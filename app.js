@@ -152,6 +152,28 @@
      Elementos com data-reveal ficam visíveis quando entram na tela.
      Sem IntersectionObserver (navegadores antigos), fica tudo visível.
   ============================================================ */
+  // Grupos: filhos ganham revelação em sequência (stagger)
+  $$('[data-reveal-group]').forEach((group) => {
+    Array.from(group.children).forEach((child, i) => {
+      if (!child.hasAttribute('data-reveal')) {
+        child.setAttribute('data-reveal', '');
+      }
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  // Barra de progresso de leitura
+  const progressBar = $('[data-scroll-progress]');
+  if (progressBar) {
+    const updateProgress = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      progressBar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
   const revealEls = $$('[data-reveal]');
 
   if (revealEls.length) {

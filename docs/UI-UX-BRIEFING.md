@@ -181,11 +181,13 @@ Labels sempre visíveis (nunca só placeholder). Botão de envio: primário. Fee
 
 | Onde | Como |
 |---|---|
-| Revelação de seção (scroll) | IntersectionObserver: opacity 0→1 + translateY(16px→0), 500ms, ease-out, stagger 80ms entre elementos |
-| Hover em botões/cards | ≤200ms, ease-out |
-| FAQ | Abertura 250ms (altura), ícone rotaciona 180° |
+| Revelação de seção (scroll) | IntersectionObserver: opacity 0→1 + translateY(16px→0), **500ms, `--ease-out` (cubic-bezier(0.33,1,0.68,1))** — **sem blur** (desfoque em massa é marca de template de IA) |
+| Stagger em grupos | Apenas em 3 lugares (tópicos do coaching, passos, preços): filhos entram com atraso de `--i × 60ms`; o resto revela como bloco único |
+| Hover em botões/cards | ≤250ms, ease-out; sem efeitos de "brilho varrendo" (cara de template) |
+| FAQ | Abertura 300ms (altura), ícone rotaciona 180° |
 | Menu mobile | Fade + slide 16px, 250ms |
-| Header | Fundo ganha blur + borda inferior após scroll (20px) |
+| Header | Entra deslizando de cima no carregamento (450ms) + fundo fosco após scroll |
+| Barra de progresso | Linha de 2px no topo (gradiente ciano) acompanhando a rolagem — "linha de precisão" |
 
 **Proibido:** parallax, partículas, background animado, loops contínuos, pulse infinito, marquee.
 
