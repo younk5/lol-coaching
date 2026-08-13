@@ -1477,21 +1477,23 @@ h3 {
 
 /* ============================================================
    MOVIMENTO REDUZIDO (acessibilidade)
+   Obs.: o sufixo ?motion=on no endereço FORÇA as animações
+   (modo de pré-visualização do dono — não afeta visitantes).
 ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html:not(.force-motion) {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  html:not(.force-motion) *,
+  html:not(.force-motion) *::before,
+  html:not(.force-motion) *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
 
-  [data-reveal] {
+  html:not(.force-motion) [data-reveal] {
     opacity: 1;
     transform: none;
   }
