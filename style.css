@@ -1,0 +1,512 @@
+/* ============================================================
+   HYOGA — COACHING DE JUNGLE
+   Design system + base. Briefing: docs/UI-UX-BRIEFING.md
+   Organização: cada seção da página tem seu bloco de estilos.
+============================================================ */
+
+/* ============================================================
+   VARIÁVEIS (design tokens) — painel de controle do site
+============================================================ */
+:root {
+  /* Cores */
+  --bg: #05070A;
+  --bg-2: #0B0F16;
+  --cyan: #00E5FF;
+  --cyan-hover: #00B8CC;
+  --text-primary: #F2F5F7;
+  --text-secondary: #9AA6B2;
+  --border: #1C232C;
+  --success: #3DDC84;
+  --error: #FF5C5C;
+
+  /* Luz e brilho */
+  --glow-soft: 0 0 24px rgba(0, 229, 255, 0.18);
+  --glow-strong: 0 0 40px rgba(0, 229, 255, 0.3);
+  --spotlight: radial-gradient(600px 400px at 70% 0%, rgba(0, 229, 255, 0.07), transparent 70%);
+
+  /* Formas */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 24px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-section: clamp(64px, 10vw, 96px);
+
+  /* Tipografia */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Transições */
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --t-fast: 200ms;
+  --t-med: 300ms;
+  --t-reveal: 500ms;
+}
+
+/* ============================================================
+   RESET E BASE
+============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* compensa o header fixo nas âncoras */
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul[class] {
+  list-style: none;
+}
+
+/* Foco visível em qualquer elemento interativo */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   UTILIDADES
+============================================================ */
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-section);
+  position: relative;
+}
+
+/* Seções alternadas ganham fundo secundário sutil */
+.section--alt {
+  background-color: var(--bg-2);
+}
+
+/* Elemento decorativo: linha de precisão no topo da seção */
+.section--line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, calc(100% - 48px));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Aviso visível para conteúdo que ainda depende de confirmação */
+.placeholder {
+  color: var(--text-secondary);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   TIPOGRAFIA
+============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: var(--space-2);
+}
+
+.section-title {
+  margin-bottom: var(--space-3);
+}
+
+.section-sub {
+  color: var(--text-secondary);
+  max-width: 65ch;
+  margin-bottom: var(--space-5);
+}
+
+/* ============================================================
+   BOTÕES
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease);
+}
+
+.btn .icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Botão principal: a ação principal da página (Discord) */
+.btn--primary {
+  background-color: var(--cyan);
+  color: var(--bg);
+  box-shadow: var(--glow-soft);
+}
+
+.btn--primary:hover {
+  background-color: var(--cyan-hover);
+  box-shadow: var(--glow-strong);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+  box-shadow: var(--glow-soft);
+}
+
+.btn--primary:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+/* Botão secundário: ações de apoio (Twitch, Liquipedia, DeepLol) */
+.btn--secondary {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+}
+
+.btn--secondary:hover {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: var(--cyan);
+}
+
+/* Versão compacta (header, mobile) */
+.btn--compact {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   SKIP LINK
+============================================================ */
+.skip-link {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 200;
+  background: var(--cyan);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  background: transparent;
+  transition: background-color var(--t-med) var(--ease),
+              border-color var(--t-med) var(--ease),
+              backdrop-filter var(--t-med) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+/* Estado após rolar: fundo levemente fosco */
+.site-header.is-scrolled {
+  background: rgba(5, 7, 10, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 72px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  margin-right: auto;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  color: var(--cyan);
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.08em;
+}
+
+/* Navegação desktop */
+.nav-list {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.nav-list a {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.nav-list a:hover {
+  color: var(--text-primary);
+}
+
+/* Botão hambúrguer (mobile) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.menu-toggle-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-primary);
+  transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+}
+
+/* Estado aberto vira "X" */
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Painel do menu mobile */
+.menu-mobile {
+  background: rgba(5, 7, 10, 0.97);
+  border-bottom: 1px solid var(--border);
+  padding-block: var(--space-4);
+}
+
+.menu-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-inline: var(--gutter);
+  margin-bottom: var(--space-4);
+}
+
+.menu-mobile-list a {
+  display: block;
+  padding: var(--space-2) 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+}
+
+.menu-mobile .btn {
+  margin-inline: var(--gutter);
+  width: calc(100% - 48px);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-5);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.footer-note {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   MOVIMENTO (revelação ao rolar)
+============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--t-reveal) var(--ease),
+              transform var(--t-reveal) var(--ease);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+============================================================ */
+@media (max-width: 1023px) {
+  .nav-list {
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 767px) {
+  .site-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-inner .btn--compact {
+    display: none; /* o CTA vive no menu mobile + hero */
+  }
+}
+
+/* ============================================================
+   MOVIMENTO REDUZIDO (acessibilidade)
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
