@@ -72,4 +72,28 @@
       console.debug('[track]', name);
     }
   });
+  /* ============================================================
+     ANIMATIONS — revelação suave ao rolar (IntersectionObserver)
+     Elementos com data-reveal ficam visíveis quando entram na tela.
+     Sem IntersectionObserver (navegadores antigos), fica tudo visível.
+  ============================================================ */
+  const revealEls = $$('[data-reveal]');
+
+  if (revealEls.length) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      // Fallback: sem suporte, mostra tudo imediatamente
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    }
+  }
 })();
