@@ -1,0 +1,8 @@
+# Hyoga — Coaching de Jungle
+# Permite que todos os buscadores indexem o site.
+
+User-agent: *
+Allow: /
+
+# ATENÇÃO: depois de definir o domínio final, descomente a linha abaixo:
+# Sitemap: https://SEU-DOMINIO/sitemap.xml
