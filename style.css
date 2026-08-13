@@ -1224,8 +1224,16 @@ h3 {
     display: flex;
   }
 
-  .header-inner .btn--compact {
-    display: none; /* o CTA vive no menu mobile + hero */
+  /* No mobile o CTA vira um botão só com o ícone (44px, padrão de toque)
+     para continuar sempre acessível no header */
+  .header-cta {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+  }
+
+  .header-cta-label {
+    display: none;
   }
 }
 
