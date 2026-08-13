@@ -190,7 +190,7 @@ Pagamentos, agendamento, login, área do aluno, blog, CMS, multi-idioma, página
 | Dado | Valor | Fonte |
 |---|---|---|
 | IGN | Hyoga | Atleta |
-| Nome real | Benjamin de Barbi | DeepLol + Leaguepedia |
+| Nome real | Benjamin de Barbi — **confidencial: NÃO exibir no site (decisão do atleta); usar apenas "Hyoga"** | DeepLol + Leaguepedia |
 | Região | Brasil (servidor BR) | DeepLol + Leaguepedia |
 | Função | Jungle (Jungler) | DeepLol + Leaguepedia |
 | Classificação | PRO player | DeepLol |

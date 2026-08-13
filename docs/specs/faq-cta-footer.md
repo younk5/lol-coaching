@@ -28,7 +28,7 @@ Rodapé do FAQ: "Ficou com outra dúvida? Pergunte no Discord." (link + tracking
 ## 4. Footer
 
 - Marca + nav com 6 links oficiais (Discord, Twitch, Liquipedia, DeepLol, X, Instagram — todos com `data-track` e nova aba).
-- Nota: "© 2026 Benjamin de Barbi (Hyoga). Ex-jogador profissional de League of Legends."
+- Nota: "© 2026 Hyoga. Ex-jogador profissional de League of Legends." (nome real não é exibido — decisão do atleta)
 
 ## 5. Acessibilidade do FAQ (contrato ARIA)
 

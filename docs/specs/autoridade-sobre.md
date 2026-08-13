@@ -30,7 +30,7 @@
 | P1 | Começo no beta, sonho de pro player, topo da soloQ desde 2018, season 2019 em 1º | Anexo A |
 | P2 | 3 contas top 1/2/3 simultâneas, 5 contas Challenger, times e técnicos | Anexo A |
 | P3 | Esforço, criatividade e método de estudo — ponte para o coaching | Anexo A |
-| Ficha (aside) | Nome: Hyoga (Benjamin de Barbi) · Função: Jungle · Servidor: Brasil (BR) · Times: CNB · Uppercut · Santos · SoloQ: Top 1 (2019) · Classificação: Pro Player (DeepLol) | PRD §11 |
+| Ficha (aside) | Nome: Hyoga (nome real confidencial — não exibir) · Função: Jungle · Servidor: Brasil (BR) · Times: CNB · Uppercut · Santos · SoloQ: Top 1 (2019) · Classificação: Pro Player (DeepLol) | PRD §11 |
 
 ## 3. Casos de borda
 

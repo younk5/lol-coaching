@@ -1,6 +1,6 @@
 # Hyoga — Coaching de Jungle (site oficial)
 
-Site profissional do **Hyoga** (Benjamin de Barbi), ex-jogador profissional de League of Legends (jungle), com passagens por CNB, Uppercut e Santos e-Sports — hoje oferecendo coaching individual de jungle.
+Site profissional do **Hyoga**, ex-jogador profissional de League of Legends (jungle), com passagens por CNB, Uppercut e Santos e-Sports — hoje oferecendo coaching individual de jungle.
 
 Este guia foi escrito para você, que **não é desenvolvedor(a)**. Ele explica o que cada arquivo faz e como fazer as mudanças mais comuns sem quebrar nada.
 

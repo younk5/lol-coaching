@@ -3,7 +3,7 @@
 | Campo | Valor |
 |---|---|
 | **Produto** | Landing page de conversão (1 página) |
-| **Atleta** | Hyoga (Benjamin de Barbi) — ex-pro player de LoL, jungler |
+| **Atleta** | Hyoga — ex-pro player de LoL, jungler (nome real confidencial, não exibir no site) |
 | **Objetivo** | Transmitir AUTORIDADE + EXPERIÊNCIA + PRECISÃO + EXCLUSIVIDADE + CONFIANÇA e converter visitante → Discord |
 | **Status** | Aprovado para implementação |
 | **Data** | 2026-08-13 |
