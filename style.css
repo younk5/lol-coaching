@@ -1222,6 +1222,12 @@ h3 {
   font-weight: 600;
 }
 
+.campo-opcional {
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
 .field input,
 .field select {
   background: var(--bg);

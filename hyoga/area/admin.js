@@ -63,6 +63,12 @@
 
   const EXP_LABEL = { nunca: 'Nunca jogou', iniciante: 'Iniciante', intermediario: 'Intermediário', avancado: 'Avançado' };
 
+  const HORAS_LABEL = { 'menos-5': 'Menos de 5 h', '5-15': '5 a 15 h', '15-30': '15 a 30 h', 'mais-30': 'Mais de 30 h' };
+
+  const INTERESSE_LABEL = { 'aula-avulsa': 'Aula avulsa', pacote: 'Pacote de aulas', 'vod-review': 'VOD review', conversar: 'Só conversar' };
+
+  const ORIGEM_LABEL = { discord: 'Discord', twitch: 'Twitch', kick: 'Kick', instagram: 'Instagram', indicacao: 'Indicação', outro: 'Outro' };
+
   const SVGS = {
     olho: '<svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>',
     form: '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>',
@@ -79,6 +85,10 @@
     calendario: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
     relogio: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
     trofeu: '<svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v7a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 6"/><path d="M17 6h3a3 3 0 0 1-3 6"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+    estrela: '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>',
+    mira: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12h.01"/></svg>',
+    megafone: '<svg viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M15 8a5 5 0 0 1 0 8"/></svg>',
   };
 
   let msgsCache = [];
@@ -107,6 +117,11 @@
     const elo = m.elo || '';
     const servidor = m.servidor ? SERVIDOR_LABEL[m.servidor] || m.servidor : '';
     const experiencia = m.experiencia ? EXP_LABEL[m.experiencia] || m.experiencia : '';
+    const campeoes = m.campeoes ? esc(m.campeoes) : '';
+    const horas = m.horas ? HORAS_LABEL[m.horas] || m.horas : '';
+    const interesse = m.interesse ? INTERESSE_LABEL[m.interesse] || m.interesse : '';
+    const origem = m.origem ? ORIGEM_LABEL[m.origem] || m.origem : '';
+    const whats = m.whatsapp ? String(m.whatsapp).replace(/\D/g, '') : '';
     return `
       <article class="msg">
         <div class="msg-topo">
@@ -119,10 +134,20 @@
           </div>
           ${elo ? `<span class="badge-elo" style="--cor-elo:${ELO_COR[elo] || '#9AA6B2'}">${esc(ELO_LABEL[elo] || elo)}</span>` : ''}
         </div>
+        <div class="msg-contatos">
+          ${m.discord ? `<span class="meta"><span class="meta-icone">${SVGS.discord}</span><b>Discord</b>${esc(m.discord)}</span>` : ''}
+          ${whats ? `<a class="meta" href="https://wa.me/${whats}" target="_blank" rel="noopener"><span class="meta-icone">${SVGS.whatsapp}</span><b>WhatsApp</b>${esc(m.whatsapp)}</a>` : ''}
+        </div>
         <p class="msg-objetivo">${esc(m.objetivo)}</p>
         <div class="msg-metas">
           ${servidor ? `<span class="meta"><span class="meta-icone">${SVGS.globo}</span><b>Servidor</b>${esc(servidor)}</span>` : ''}
           ${experiencia ? `<span class="meta"><span class="meta-icone">${SVGS.pulso}</span><b>Experiência</b>${esc(experiencia)}</span>` : ''}
+          ${campeoes ? `<span class="meta"><span class="meta-icone">${SVGS.estrela}</span><b>Campeões</b>${campeoes}</span>` : ''}
+          ${horas ? `<span class="meta"><span class="meta-icone">${SVGS.relogio}</span><b>Horas/semana</b>${esc(horas)}</span>` : ''}
+        </div>
+        <div class="msg-rodape">
+          ${interesse ? `<span class="badge-interesse">${esc(interesse)}</span>` : ''}
+          ${origem ? `<span class="meta"><span class="meta-icone">${SVGS.megafone}</span>${esc(origem)}</span>` : ''}
         </div>
       </article>`;
   }
@@ -222,6 +247,8 @@
       ['Elo mais comum', SVGS.trofeu, ELO_LABEL[eloTopo] || '—', eloTopo ? ELO_COR[eloTopo] : ''],
       ['Servidor mais comum', SVGS.globo, SERVIDOR_LABEL[maisComum('servidor')] || '—', ''],
       ['Experiência mais comum', SVGS.pulso, EXP_LABEL[maisComum('experiencia')] || '—', ''],
+      ['Interesse mais comum', SVGS.mira, INTERESSE_LABEL[maisComum('interesse')] || '—', ''],
+      ['Origem mais comum', SVGS.megafone, ORIGEM_LABEL[maisComum('origem')] || '—', ''],
     ]
       .map(([nome, icone, valor, cor]) => `
         <div class="stat stat-perfil">

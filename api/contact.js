@@ -37,11 +37,19 @@ module.exports = async function handler(req, res) {
   const message = [
     '**Novo contato pelo site**',
     `**Nome:** ${data.nome}`,
+    `**Discord:** ${data.discord}`,
+    data.whatsapp ? `**WhatsApp:** +${data.whatsapp}` : null,
     `**Elo atual:** ${data.elo}`,
-    `**Objetivo:** ${data.objetivo}`,
     `**Servidor:** ${data.servidor}`,
     `**Experiência na jungle:** ${data.experiencia}`,
-  ].join('\n');
+    data.campeoes ? `**Campeões:** ${data.campeoes}` : null,
+    data.horas ? `**Horas/semana:** ${data.horas}` : null,
+    `**Interesse:** ${data.interesse}`,
+    data.origem ? `**Conheceu via:** ${data.origem}` : null,
+    `**Objetivo:** ${data.objetivo}`,
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   try {
     const response = await fetch(webhookUrl(), {

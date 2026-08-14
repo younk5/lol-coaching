@@ -25,6 +25,8 @@ const VALIDO = {
   objetivo: 'Subir para platina',
   servidor: 'br',
   experiencia: 'intermediario',
+  discord: 'joao_main',
+  interesse: 'aula-avulsa',
 };
 
 test('rejeita método GET com 405', async () => {

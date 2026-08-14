@@ -654,10 +654,63 @@
               </select>
             </div>
 
+            <div class="field-row">
+              <div class="field">
+                <label for="f-discord">Discord</label>
+                <input id="f-discord" name="discord" type="text" required minlength="2" maxlength="60" autocomplete="off" placeholder="seu_nick (é por aqui que o Hyoga responde)">
+              </div>
+              <div class="field">
+                <label for="f-whatsapp">WhatsApp <span class="campo-opcional">(opcional)</span></label>
+                <input id="f-whatsapp" name="whatsapp" type="tel" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="11 91234-5678">
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-campeoes">Campeões que joga na jungle <span class="campo-opcional">(opcional)</span></label>
+                <input id="f-campeoes" name="campeoes" type="text" maxlength="200" placeholder="Ex.: Lee Sin, Viego, Kindred">
+              </div>
+              <div class="field">
+                <label for="f-horas">Horas de jogo por semana <span class="campo-opcional">(opcional)</span></label>
+                <select id="f-horas" name="horas">
+                  <option value="">Selecione</option>
+                  <option value="menos-5">Menos de 5 h</option>
+                  <option value="5-15">5 a 15 h</option>
+                  <option value="15-30">15 a 30 h</option>
+                  <option value="mais-30">Mais de 30 h</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-interesse">O que te interessa</label>
+                <select id="f-interesse" name="interesse" required>
+                  <option value="">Selecione</option>
+                  <option value="aula-avulsa">Uma aula avulsa</option>
+                  <option value="pacote">Pacote de aulas</option>
+                  <option value="vod-review">VOD review (revisão de replay)</option>
+                  <option value="conversar">Só conversar primeiro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-origem">Onde você me conheceu <span class="campo-opcional">(opcional)</span></label>
+                <select id="f-origem" name="origem">
+                  <option value="">Selecione</option>
+                  <option value="discord">Discord</option>
+                  <option value="twitch">Twitch</option>
+                  <option value="kick">Kick</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="indicacao">Indicação de alguém</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+            </div>
+
             <p class="field-error" data-form-error role="alert" hidden></p>
 
             <button class="btn btn--primary" type="submit" data-track="form">Enviar mensagem</button>
-            <p class="field-note">A mensagem vai direto para o Discord do Hyoga — sem cadastro.</p>
+            <p class="field-note">A mensagem vai direto para o Discord do Hyoga — sem cadastro. Quanto mais completo, mais rápida a resposta.</p>
           </form>
 
           <div class="contact-success" data-form-success hidden>

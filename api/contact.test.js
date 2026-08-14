@@ -12,6 +12,8 @@ const VALIDO = {
   objetivo: 'Subir para platina jogando de jungle',
   servidor: 'br',
   experiencia: 'intermediario',
+  discord: 'joao_main',
+  interesse: 'pacote',
 };
 
 test('aceita payload válido e retorna dados limpos', () => {
