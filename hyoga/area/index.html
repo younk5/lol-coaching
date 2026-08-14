@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do admin — Hyoga</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- Tela de login -->
+    <section id="tela-login" class="card login" hidden>
+      <div class="logo-admin" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="40" height="40">
+          <path d="M18 46 L34 18" stroke="#8ED0C2" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <path d="M46 46 L30 18" stroke="#F2F5F7" stroke-width="5" stroke-linecap="round" fill="none" opacity=".45"/>
+        </svg>
+      </div>
+      <h1>Área do admin</h1>
+      <p class="login-sub">Acesso restrito. Entre com a senha para ver os dados do site.</p>
+      <form id="form-login" autocomplete="off">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required autocomplete="current-password">
+        <p class="erro" id="erro-login" role="alert" hidden></p>
+        <button type="submit" id="btn-entrar">Entrar</button>
+      </form>
+    </section>
+
+    <!-- Painel com os dados -->
+    <section id="tela-painel" hidden>
+      <header class="painel-topo">
+        <p class="marca">HYOGA — Área do admin</p>
+        <button type="button" id="btn-sair" class="botao-secundario">Sair</button>
+      </header>
+
+      <h1>Visão geral</h1>
+
+      <div class="grade" id="grade-stats"></div>
+
+      <h2>Mensagens do formulário</h2>
+      <p class="vazio" id="sem-msgs" hidden>Nenhuma mensagem recebida ainda. As mensagens enviadas pelo formulário do site aparecem aqui.</p>
+      <div class="lista" id="lista-msgs"></div>
+    </section>
+
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>

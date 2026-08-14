@@ -4,6 +4,7 @@
 // (configurada no painel da Vercel) — nunca aparece no frontend.
 
 const { validateForm } = require('./validate.js');
+const { kvPipeline } = require('../lib/kv.js');
 
 // Lê a variável de ambiente no momento da chamada (mais seguro e testável)
 function webhookUrl() {
@@ -62,6 +63,15 @@ module.exports = async function handler(req, res) {
     if (!response.ok) {
       throw new Error(`discord ${response.status}`);
     }
+
+    // Guarda a mensagem no KV para aparecer na área do admin.
+    // Se o KV falhar, o envio ao Discord já aconteceu — segue normal.
+    try {
+      await kvPipeline([
+        ['RPUSH', 'msgs', JSON.stringify({ quando: new Date().toISOString(), ...data })],
+        ['LTRIM', 'msgs', '-100', '-1'],
+      ]);
+    } catch {}
 
     res.status(200).json({ ok: true });
   } catch {

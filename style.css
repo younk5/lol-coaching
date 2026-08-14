@@ -1367,6 +1367,18 @@ h3 {
   font-size: 0.875rem;
 }
 
+.footer-admin {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border);
+}
+
+.footer-admin:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
 /* Movimento (revelação ao rolar) */
 [data-reveal] {
   opacity: 0;

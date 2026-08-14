@@ -9,6 +9,11 @@
     document.documentElement.classList.add('force-motion');
   }
 
+  // Registra a visita para a área do admin (/hyoga/area)
+  try {
+    navigator.sendBeacon('/api/track', JSON.stringify({ name: 'pageview' }));
+  } catch {}
+
   /* Header ao rolar */
   const header = $('[data-header]');
 
@@ -102,7 +107,7 @@
     link.addEventListener('click', () => setMenu(false));
   });
 
-  /* Cliques medidos (Vercel Analytics) */
+  /* Cliques medidos (Vercel Analytics + contadores da área do admin) */
   document.addEventListener('click', (e) => {
     const el = e.target.closest('[data-track]');
     if (!el) return;
@@ -113,6 +118,11 @@
     if (typeof window.va === 'function') {
       window.va('event', { name });
     }
+
+    // Contador simples para a área do admin (/hyoga/area)
+    try {
+      navigator.sendBeacon('/api/track', JSON.stringify({ name }));
+    } catch {}
 
     // Em desenvolvimento local, mostra no console para conferência
     if (location.protocol === 'file:' || location.hostname === 'localhost') {
