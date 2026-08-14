@@ -50,11 +50,6 @@ function validateForm(payload) {
     errors.discord = 'Discord deve ter entre 2 e 60 caracteres.';
   }
 
-  data.whatsapp = String(payload.whatsapp ?? '').replace(/\D/g, '').slice(0, 15);
-  if (data.whatsapp && (data.whatsapp.length < 10 || data.whatsapp.length > 15)) {
-    errors.whatsapp = 'WhatsApp inválido. Use só o número com DDD.';
-  }
-
   data.campeoes = clean(payload.campeoes);
   if (data.campeoes.length > 200) {
     errors.campeoes = 'Campeões deve ter no máximo 200 caracteres.';

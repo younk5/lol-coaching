@@ -38,7 +38,6 @@ module.exports = async function handler(req, res) {
     '**Novo contato pelo site**',
     `**Nome:** ${data.nome}`,
     `**Discord:** ${data.discord}`,
-    data.whatsapp ? `**WhatsApp:** +${data.whatsapp}` : null,
     `**Elo atual:** ${data.elo}`,
     `**Servidor:** ${data.servidor}`,
     `**Experiência na jungle:** ${data.experiencia}`,

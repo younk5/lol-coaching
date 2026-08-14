@@ -85,7 +85,6 @@
     calendario: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
     relogio: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
     trofeu: '<svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v7a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 6"/><path d="M17 6h3a3 3 0 0 1-3 6"/></svg>',
-    whatsapp: '<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
     estrela: '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>',
     mira: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 12h.01"/></svg>',
     megafone: '<svg viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M15 8a5 5 0 0 1 0 8"/></svg>',
@@ -121,7 +120,6 @@
     const horas = m.horas ? HORAS_LABEL[m.horas] || m.horas : '';
     const interesse = m.interesse ? INTERESSE_LABEL[m.interesse] || m.interesse : '';
     const origem = m.origem ? ORIGEM_LABEL[m.origem] || m.origem : '';
-    const whats = m.whatsapp ? String(m.whatsapp).replace(/\D/g, '') : '';
     return `
       <article class="msg">
         <div class="msg-topo">
@@ -136,7 +134,6 @@
         </div>
         <div class="msg-contatos">
           ${m.discord ? `<span class="meta"><span class="meta-icone">${SVGS.discord}</span><b>Discord</b>${esc(m.discord)}</span>` : ''}
-          ${whats ? `<a class="meta" href="https://wa.me/${whats}" target="_blank" rel="noopener"><span class="meta-icone">${SVGS.whatsapp}</span><b>WhatsApp</b>${esc(m.whatsapp)}</a>` : ''}
         </div>
         <p class="msg-objetivo">${esc(m.objetivo)}</p>
         <div class="msg-metas">
