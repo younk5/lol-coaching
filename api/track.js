@@ -4,6 +4,7 @@ const PERMITIDOS = new Set([
   'pageview',
   'discord',
   'twitch',
+  'kick',
   'liquipedia',
   'deeplol',
   'instagram',

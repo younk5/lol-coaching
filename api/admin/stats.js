@@ -4,6 +4,7 @@ const CONTADORES = [
   ['stats:pv', 'Visitas'],
   ['stats:click:discord', 'Cliques no Discord'],
   ['stats:click:twitch', 'Cliques na Twitch'],
+  ['stats:click:kick', 'Cliques na Kick'],
   ['stats:click:liquipedia', 'Cliques na Liquipedia'],
   ['stats:click:deeplol', 'Cliques no DeepLol'],
   ['stats:click:instagram', 'Cliques no Instagram'],

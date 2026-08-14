@@ -220,4 +220,19 @@
       revealEls.forEach((el) => el.classList.add('is-visible'));
     }
   }
+
+  const lazyFrames = $$('iframe[data-src]');
+
+  if (lazyFrames.length && 'IntersectionObserver' in window) {
+    const lazyIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.src = entry.target.dataset.src;
+          lazyIO.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '300px' });
+
+    lazyFrames.forEach((el) => lazyIO.observe(el));
+  }
 })();
