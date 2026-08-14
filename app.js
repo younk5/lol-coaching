@@ -1,26 +1,15 @@
-/* ============================================================
-   HYOGA — app.js
-   JavaScript puro, organizado em módulos pequenos:
-   navigation · mobile-menu · faq · tracking · form · animations
-   (faq, form e animations ganham código junto com suas seções)
-============================================================ */
 (() => {
   'use strict';
 
-  /* ---------- helpers ---------- */
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  /* Animações LIGADAS por padrão — mesmo quando o sistema operacional
-     tem "Efeitos de animação" desligados (prefers-reduced-motion).
-     Para restaurar o modo acessível sem animações: ?motion=off no endereço. */
+  // Animações ligadas por padrão; ?motion=off no endereço desativa.
   if (new URLSearchParams(location.search).get('motion') !== 'off') {
     document.documentElement.classList.add('force-motion');
   }
 
-  /* ============================================================
-     NAVIGATION — estado do header ao rolar
-  ============================================================ */
+  /* Header ao rolar */
   const header = $('[data-header]');
 
   const updateHeader = () => {
@@ -30,10 +19,7 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
-  /* Scroll suave para âncoras (logo, menu, "ver como funciona").
-     Feito em JS porque alguns navegadores ignoram o scroll-behavior
-     do CSS quando o sistema operacional tem animações desativadas.
-     Continua respeitando prefers-reduced-motion (salto instantâneo). */
+  // Scroll suave via JS: o navegador ignora o CSS smooth quando o sistema desativa animações.
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const forceMotion = () => document.documentElement.classList.contains('force-motion');
@@ -46,15 +32,14 @@
     }
   };
 
-  /* URL sempre limpa: remove qualquer # do endereço sem recarregar.
-     (try/catch por segurança no modo file://) */
+  // URL sem #: com # na URL o navegador pula e quebra o scroll suave.
   const cleanUrl = () => {
     try {
       history.replaceState(null, '', location.pathname + location.search);
     } catch {}
   };
 
-  /* Clicou num link de âncora: rola suave e NÃO suja a URL com # */
+  // Clique em âncora: rola suave, sem mexer na URL.
   document.addEventListener('click', (e) => {
     const anchor = e.target.closest('a[href^="#"]');
     if (!anchor) return;
@@ -78,8 +63,7 @@
     cleanUrl();
   });
 
-  /* Chegou com # no endereço (ex.: link compartilhado com #coaching):
-     rola até a seção e limpa a URL em seguida. */
+  // Link compartilhado com #: rola até a seção e limpa a URL.
   if (location.hash) {
     const target = document.getElementById(location.hash.slice(1));
 
@@ -92,9 +76,7 @@
     cleanUrl();
   }
 
-  /* ============================================================
-     MOBILE MENU — abrir/fechar com teclado
-  ============================================================ */
+  /* Menu mobile */
   const menuToggle = $('[data-menu-toggle]');
   const menuMobile = $('[data-menu-mobile]');
 
@@ -120,11 +102,7 @@
     link.addEventListener('click', () => setMenu(false));
   });
 
-  /* ============================================================
-     TRACKING — cliques medidos (Vercel Analytics)
-     Uso: <a data-track="discord"> — nomes: discord, twitch,
-     liquipedia, deeplol, instagram, x, form
-  ============================================================ */
+  /* Cliques medidos (Vercel Analytics) */
   document.addEventListener('click', (e) => {
     const el = e.target.closest('[data-track]');
     if (!el) return;
@@ -141,9 +119,7 @@
       console.debug('[track]', name);
     }
   });
-  /* ============================================================
-     FAQ — accordion acessível (um item aberto por vez)
-  ============================================================ */
+  /* FAQ */
   const faqButtons = $$('.faq-q');
 
   const closeFaq = () => {
@@ -164,9 +140,7 @@
     });
   });
 
-  /* ============================================================
-     FORM — envio para a função serverless (sem recarregar a página)
-  ============================================================ */
+  /* Formulário */
   const form = $('[data-form]');
 
   if (form) {
@@ -216,11 +190,7 @@
     });
   }
 
-  /* ============================================================
-     ANIMATIONS — revelação suave ao rolar (IntersectionObserver)
-     Elementos com data-reveal ficam visíveis quando entram na tela.
-     Sem IntersectionObserver (navegadores antigos), fica tudo visível.
-  ============================================================ */
+  /* Revelação ao rolar */
   // Grupos: filhos ganham revelação em sequência (stagger)
   $$('[data-reveal-group]').forEach((group) => {
     Array.from(group.children).forEach((child, i) => {

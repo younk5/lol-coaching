@@ -1,15 +1,8 @@
-/* ============================================================
-   HYOGA — COACHING DE JUNGLE
-   Design system + base. Briefing: docs/UI-UX-BRIEFING.md
-   Organização: cada seção da página tem seu bloco de estilos.
-============================================================ */
+/* Hyoga — Coaching de Jungle */
 
-/* ============================================================
-   VARIÁVEIS (design tokens) — painel de controle do site
-============================================================ */
+/* Variáveis (cores, espaços, fontes) */
 :root {
-  /* Cores — acento no tom Kindred (verde-água dessaturado do Lamb),
-     em vez do ciano neon comum em templates de IA */
+  /* Cores — acento no tom Kindred (verde-água dessaturado do Lamb) */
   --bg: #05070A;
   --bg-2: #0B0F16;
   --cyan: #8ED0C2;
@@ -52,9 +45,7 @@
   --t-reveal: 500ms;
 }
 
-/* ============================================================
-   RESET E BASE
-============================================================ */
+/* Reset e base */
 *,
 *::before,
 *::after {
@@ -111,9 +102,7 @@ ul[class] {
   color: var(--text-primary);
 }
 
-/* ============================================================
-   UTILIDADES
-============================================================ */
+/* Utilidades */
 .container {
   max-width: var(--container);
   margin-inline: auto;
@@ -163,9 +152,7 @@ ul[class] {
   font-size: 0.875rem;
 }
 
-/* ============================================================
-   TIPOGRAFIA
-============================================================ */
+/* Tipografia */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -208,9 +195,7 @@ h3 {
   margin-bottom: var(--space-5);
 }
 
-/* ============================================================
-   BOTÕES
-============================================================ */
+/* Botões */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -278,9 +263,7 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* ============================================================
-   SKIP LINK
-============================================================ */
+/* Skip link */
 .skip-link {
   position: fixed;
   top: var(--space-2);
@@ -300,9 +283,7 @@ h3 {
   transform: translateY(0);
 }
 
-/* ============================================================
-   HEADER
-============================================================ */
+/* Header */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
@@ -444,9 +425,7 @@ h3 {
   width: calc(100% - 48px);
 }
 
-/* ============================================================
-   HERO
-============================================================ */
+/* Hero */
 .hero {
   position: relative;
   display: flex;
@@ -670,9 +649,7 @@ h3 {
   font-style: normal;
 }
 
-/* ============================================================
-   AUTORIDADE
-============================================================ */
+/* Autoridade */
 /* Faixa de números grandes */
 .stat-band {
   display: grid;
@@ -828,9 +805,7 @@ h3 {
   }
 }
 
-/* ============================================================
-   SOBRE
-============================================================ */
+/* Sobre */
 .sobre-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -886,9 +861,7 @@ h3 {
   }
 }
 
-/* ============================================================
-   COACHING
-============================================================ */
+/* Coaching */
 /* 6 pilares do coaching */
 .topic-grid {
   display: grid;
@@ -1006,9 +979,7 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* ============================================================
-   COMO FUNCIONA
-============================================================ */
+/* Como funciona */
 .steps {
   margin-bottom: var(--space-5);
 }
@@ -1057,9 +1028,7 @@ h3 {
   }
 }
 
-/* ============================================================
-   PARA QUEM É / NÃO É
-============================================================ */
+/* Para quem é / não é */
 .pro-list {
   max-width: 720px;
   margin-bottom: var(--space-5);
@@ -1105,9 +1074,7 @@ h3 {
   color: var(--error);
 }
 
-/* ============================================================
-   TWITCH / CONTEÚDO
-============================================================ */
+/* Twitch / Conteúdo */
 .twitch-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -1142,9 +1109,7 @@ h3 {
   font-size: 0.9375rem;
 }
 
-/* ============================================================
-   PROVAS SOCIAIS
-============================================================ */
+/* Provas Sociais */
 #depoimentos .soon-box {
   max-width: 720px;
 }
@@ -1165,9 +1130,7 @@ h3 {
   font-size: 1.0625rem;
 }
 
-/* ============================================================
-   FAQ (accordion acessível)
-============================================================ */
+/* FAQ (accordion acessível) */
 .faq-container {
   max-width: 760px;
 }
@@ -1244,9 +1207,7 @@ h3 {
   color: var(--text-secondary);
 }
 
-/* ============================================================
-   CTA FINAL
-============================================================ */
+/* CTA Final */
 .cta-final {
   text-align: center;
 }
@@ -1259,9 +1220,7 @@ h3 {
   justify-content: center;
 }
 
-/* ============================================================
-   FORMULÁRIO (opcional, secundário ao Discord)
-============================================================ */
+/* Formulário (opcional) */
 .contact-form-wrap {
   max-width: 560px;
   margin: var(--space-6) auto 0;
@@ -1364,9 +1323,7 @@ h3 {
   }
 }
 
-/* ============================================================
-   FOOTER
-============================================================ */
+/* Footer */
 .site-footer {
   border-top: 1px solid var(--border);
   padding-block: var(--space-5);
@@ -1410,11 +1367,7 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* ============================================================
-   MOVIMENTO (revelação ao rolar)
-   Revelação limpa e rápida — sem blur: o efeito de desfoque
-   em tudo é marca registrada de template de IA.
-============================================================ */
+/* Movimento (revelação ao rolar) */
 [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
@@ -1444,9 +1397,7 @@ h3 {
   z-index: 300;
 }
 
-/* ============================================================
-   RESPONSIVIDADE
-============================================================ */
+/* Responsividade */
 @media (max-width: 1023px) {
   .nav-list {
     gap: var(--space-2);
@@ -1475,11 +1426,7 @@ h3 {
   }
 }
 
-/* ============================================================
-   MOVIMENTO REDUZIDO (acessibilidade)
-   Obs.: as animações ficam LIGADAS por padrão; o sufixo ?motion=off
-   no endereço restaura o modo acessível (sem animações).
-============================================================ */
+/* Movimento reduzido (acessibilidade) */
 @media (prefers-reduced-motion: reduce) {
   html:not(.force-motion) {
     scroll-behavior: auto;
