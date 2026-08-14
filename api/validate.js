@@ -1,12 +1,7 @@
-// api/validate.js — validação pura do formulário (sem rede, testável)
-// Usada pela função serverless E pelos testes (node --test).
-
 const ELOS = ['ferro', 'bronze', 'prata', 'ouro', 'platina', 'diamante', 'mestre', 'grao-mestre', 'desafiante', 'nunca'];
 const SERVERS = ['br', 'lan', 'las', 'na', 'euw', 'outro'];
 const EXPERIENCIA = ['nunca', 'iniciante', 'intermediario', 'avancado'];
 
-// Remove caracteres de controle (ex.: quebras de linha que quebrariam a
-// mensagem do Discord) e colapsa espaços repetidos.
 function clean(value) {
   return String(value ?? '')
     .replace(/[\u0000-\u001F\u007F]/g, '')

@@ -4,17 +4,14 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  // Animações ligadas por padrão; ?motion=off no endereço desativa.
   if (new URLSearchParams(location.search).get('motion') !== 'off') {
     document.documentElement.classList.add('force-motion');
   }
 
-  // Registra a visita para a área do admin (/hyoga/area)
   try {
     navigator.sendBeacon('/api/track', JSON.stringify({ name: 'pageview' }));
   } catch {}
 
-  /* Header ao rolar */
   const header = $('[data-header]');
 
   const updateHeader = () => {
@@ -24,27 +21,24 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
-  // Scroll suave via JS: o navegador ignora o CSS smooth quando o sistema desativa animações.
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const forceMotion = () => document.documentElement.classList.contains('force-motion');
 
   const smoothScroll = (target) => {
     if (reduceMotion.matches && !forceMotion()) {
-      target.scrollIntoView(); // modo acessível: salto direto
+      target.scrollIntoView();
     } else {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  // URL sem #: com # na URL o navegador pula e quebra o scroll suave.
   const cleanUrl = () => {
     try {
       history.replaceState(null, '', location.pathname + location.search);
     } catch {}
   };
 
-  // Clique em âncora: rola suave, sem mexer na URL.
   document.addEventListener('click', (e) => {
     const anchor = e.target.closest('a[href^="#"]');
     if (!anchor) return;
@@ -57,7 +51,6 @@
     if (target) {
       smoothScroll(target);
     } else {
-      // Logo (href="#") ou âncora sem destino: volta ao topo
       if (reduceMotion.matches && !forceMotion()) {
         window.scrollTo({ top: 0 });
       } else {
@@ -68,7 +61,6 @@
     cleanUrl();
   });
 
-  // Link compartilhado com #: rola até a seção e limpa a URL.
   if (location.hash) {
     const target = document.getElementById(location.hash.slice(1));
 
@@ -81,7 +73,6 @@
     cleanUrl();
   }
 
-  /* Menu mobile */
   const menuToggle = $('[data-menu-toggle]');
   const menuMobile = $('[data-menu-mobile]');
 
@@ -94,7 +85,6 @@
     setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
   });
 
-  // Fecha com Esc e devolve o foco ao botão
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !menuMobile.hidden) {
       setMenu(false);
@@ -102,34 +92,28 @@
     }
   });
 
-  // Fecha ao clicar em qualquer link do menu
   $$('a', menuMobile).forEach((link) => {
     link.addEventListener('click', () => setMenu(false));
   });
 
-  /* Cliques medidos (Vercel Analytics + contadores da área do admin) */
   document.addEventListener('click', (e) => {
     const el = e.target.closest('[data-track]');
     if (!el) return;
 
     const name = el.dataset.track;
 
-    // Envia o evento para o Vercel Analytics (se estiver instalado)
     if (typeof window.va === 'function') {
       window.va('event', { name });
     }
 
-    // Contador simples para a área do admin (/hyoga/area)
     try {
       navigator.sendBeacon('/api/track', JSON.stringify({ name }));
     } catch {}
 
-    // Em desenvolvimento local, mostra no console para conferência
     if (location.protocol === 'file:' || location.hostname === 'localhost') {
       console.debug('[track]', name);
     }
   });
-  /* FAQ */
   const faqButtons = $$('.faq-q');
 
   const closeFaq = () => {
@@ -150,7 +134,6 @@
     });
   });
 
-  /* Formulário */
   const form = $('[data-form]');
 
   if (form) {
@@ -162,7 +145,6 @@
       e.preventDefault();
       errBox.hidden = true;
 
-      // Validação nativa do navegador (o servidor valida de novo)
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -200,8 +182,6 @@
     });
   }
 
-  /* Revelação ao rolar */
-  // Grupos: filhos ganham revelação em sequência (stagger)
   $$('[data-reveal-group]').forEach((group) => {
     Array.from(group.children).forEach((child, i) => {
       if (!child.hasAttribute('data-reveal')) {
@@ -211,7 +191,6 @@
     });
   });
 
-  // Barra de progresso de leitura
   const progressBar = $('[data-scroll-progress]');
   if (progressBar) {
     const updateProgress = () => {
@@ -238,7 +217,6 @@
 
       revealEls.forEach((el) => io.observe(el));
     } else {
-      // Fallback: sem suporte, mostra tudo imediatamente
       revealEls.forEach((el) => el.classList.add('is-visible'));
     }
   }

@@ -1,4 +1,4 @@
-/* Área do admin — mesma linguagem visual do site, mais simples */
+
 :root {
   --bg: #05070A;
   --bg-2: #0B0F16;
@@ -33,7 +33,6 @@ body {
   display: none !important;
 }
 
-/* ---- login ---- */
 .login {
   max-width: 400px;
   margin: 10vh auto 0;
@@ -114,7 +113,6 @@ button:disabled {
   margin: -8px 0 16px;
 }
 
-/* ---- painel ---- */
 .painel-topo {
   display: flex;
   justify-content: space-between;

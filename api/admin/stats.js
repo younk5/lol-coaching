@@ -1,8 +1,3 @@
-// api/admin/stats.js — dados da área do admin
-// Exige o token de sessão (Authorization: Bearer <token>).
-// Devolve os contadores (visitas, cliques) e as últimas mensagens
-// recebidas pelo formulário.
-
 const { kvGet, kvPipeline } = require('../../lib/kv.js');
 
 const CONTADORES = [

@@ -1,7 +1,3 @@
-// api/track.js — registra visitas e cliques para a área do admin
-// Chamado pelo site sem bloquear nada (sendBeacon do navegador).
-// Só aceita nomes conhecidos — ignora qualquer outra coisa.
-
 const { kvIncr } = require('../lib/kv.js');
 
 const PERMITIDOS = new Set([
@@ -35,6 +31,7 @@ module.exports = async function handler(req, res) {
   }
 
   const chave = nome === 'pageview' ? 'stats:pv' : `stats:click:${nome}`;
+
   await kvIncr(chave);
 
   res.status(204).end();

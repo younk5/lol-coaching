@@ -1,20 +1,14 @@
-// api/admin/login.js — login da área do admin
-// Compara a senha com ADMIN_PASSWORD (variável de ambiente da Vercel)
-// e devolve um token de sessão com validade de 12 horas.
-// Bloqueia por 15 minutos após 5 tentativas erradas (por IP).
-
 const crypto = require('crypto');
 const { kvGet, kvSet, kvIncr } = require('../../lib/kv.js');
 
 const MAX_TENTATIVAS = 5;
-const BLOQUEIO = 900; // 15 minutos
-const SESS = 12 * 3600; // 12 horas
+const BLOQUEIO = 900;
+const SESS = 12 * 3600;
 
 function ipDe(req) {
   return (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'desconhecido';
 }
 
-// Compara senhas com hash — evita vazar diferença por tempo de resposta
 function senhaConfere(digitada, esperada) {
   const a = crypto.createHash('sha256').update(digitada).digest();
   const b = crypto.createHash('sha256').update(esperada).digest();
@@ -59,7 +53,6 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  // Senha certa: zera as falhas e cria a sessão
   await kvSet(chaveFalhas, 0, 1);
   const token = crypto.randomBytes(32).toString('hex');
   await kvSet(`admin:sessao:${token}`, String(Date.now()), SESS);

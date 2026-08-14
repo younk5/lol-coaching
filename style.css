@@ -1,8 +1,7 @@
-/* Hyoga — Coaching de Jungle */
 
-/* Variáveis (cores, espaços, fontes) */
+
 :root {
-  /* Cores — acento no tom Kindred (verde-água dessaturado do Lamb) */
+  
   --bg: #05070A;
   --bg-2: #0B0F16;
   --cyan: #8ED0C2;
@@ -13,16 +12,16 @@
   --success: #3DDC84;
   --error: #FF5C5C;
 
-  /* Luz e brilho */
+  
   --glow-soft: 0 0 24px rgba(142, 208, 194, 0.22);
   --glow-strong: 0 0 40px rgba(142, 208, 194, 0.35);
   --spotlight: radial-gradient(600px 400px at 70% 0%, rgba(142, 208, 194, 0.08), transparent 70%);
 
-  /* Formas */
+  
   --radius-sm: 8px;
   --radius-md: 12px;
 
-  /* Layout */
+  
   --container: 1200px;
   --gutter: 24px;
   --space-1: 8px;
@@ -33,11 +32,11 @@
   --space-6: 64px;
   --space-section: clamp(64px, 10vw, 96px);
 
-  /* Tipografia */
+  
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /* Transições */
+  
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
   --t-fast: 200ms;
@@ -45,7 +44,6 @@
   --t-reveal: 500ms;
 }
 
-/* Reset e base */
 *,
 *::before,
 *::after {
@@ -56,7 +54,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px; /* compensa o header fixo nas âncoras */
+  scroll-padding-top: 88px; 
 }
 
 body {
@@ -91,7 +89,6 @@ ul[class] {
   list-style: none;
 }
 
-/* Foco visível em qualquer elemento interativo */
 :focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
@@ -102,7 +99,6 @@ ul[class] {
   color: var(--text-primary);
 }
 
-/* Utilidades */
 .container {
   max-width: var(--container);
   margin-inline: auto;
@@ -114,12 +110,10 @@ ul[class] {
   position: relative;
 }
 
-/* Seções alternadas ganham fundo secundário sutil */
 .section--alt {
   background-color: var(--bg-2);
 }
 
-/* Elemento decorativo: linha de precisão no topo da seção */
 .section--line::before {
   content: '';
   position: absolute;
@@ -143,7 +137,6 @@ ul[class] {
   border: 0;
 }
 
-/* Aviso visível para conteúdo que ainda depende de confirmação */
 .placeholder {
   color: var(--text-secondary);
   border: 1px dashed var(--border);
@@ -152,7 +145,6 @@ ul[class] {
   font-size: 0.875rem;
 }
 
-/* Tipografia */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -195,7 +187,6 @@ h3 {
   margin-bottom: var(--space-5);
 }
 
-/* Botões */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -220,7 +211,6 @@ h3 {
   flex-shrink: 0;
 }
 
-/* Botão principal: a ação principal da página (Discord) */
 .btn--primary {
   background-color: var(--cyan);
   color: var(--bg);
@@ -245,7 +235,6 @@ h3 {
   transform: none;
 }
 
-/* Botão secundário: ações de apoio (Twitch, Liquipedia, DeepLol) */
 .btn--secondary {
   background: transparent;
   color: var(--cyan);
@@ -257,13 +246,11 @@ h3 {
   border-color: var(--cyan);
 }
 
-/* Versão compacta (header, mobile) */
 .btn--compact {
   padding: 10px 20px;
   font-size: 0.875rem;
 }
 
-/* Skip link */
 .skip-link {
   position: fixed;
   top: var(--space-2);
@@ -283,7 +270,6 @@ h3 {
   transform: translateY(0);
 }
 
-/* Header */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
@@ -296,7 +282,6 @@ h3 {
   animation: header-in 450ms var(--ease-out) both;
 }
 
-/* Entrada do header no carregamento */
 @keyframes header-in {
   from {
     transform: translateY(-100%);
@@ -306,7 +291,6 @@ h3 {
   }
 }
 
-/* Estado após rolar: fundo levemente fosco */
 .site-header.is-scrolled {
   background: rgba(5, 7, 10, 0.85);
   -webkit-backdrop-filter: blur(8px);
@@ -342,7 +326,6 @@ h3 {
   letter-spacing: 0.08em;
 }
 
-/* Navegação desktop */
 .nav-list {
   display: flex;
   gap: var(--space-3);
@@ -363,7 +346,6 @@ h3 {
   background-size: 100% 1.5px;
 }
 
-/* Botão hambúrguer (mobile) */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -384,7 +366,6 @@ h3 {
   transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
 }
 
-/* Estado aberto vira "X" */
 .menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -397,7 +378,6 @@ h3 {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Painel do menu mobile */
 .menu-mobile {
   background: rgba(5, 7, 10, 0.97);
   border-bottom: 1px solid var(--border);
@@ -425,7 +405,6 @@ h3 {
   width: calc(100% - 48px);
 }
 
-/* Hero */
 .hero {
   position: relative;
   display: flex;
@@ -466,7 +445,6 @@ h3 {
   margin-bottom: var(--space-5);
 }
 
-/* Faixa de provas rápidas */
 .hero-stats {
   display: flex;
   flex-wrap: wrap;
@@ -493,7 +471,6 @@ h3 {
   font-size: 0.8125rem;
 }
 
-/* Card de credenciais do jogador (sem foto — decisão do atleta) */
 .hero-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -621,12 +598,10 @@ h3 {
   }
 }
 
-/* Destaque de uma palavra (hero) */
 .text-accent {
   color: var(--cyan);
 }
 
-/* Citação com a voz do atleta (Sobre) */
 .sobre-quote {
   margin-top: var(--space-4);
   padding-left: var(--space-3);
@@ -649,8 +624,6 @@ h3 {
   font-style: normal;
 }
 
-/* Autoridade */
-/* Faixa de números grandes */
 .stat-band {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -682,7 +655,6 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* Duas colunas: timeline + referências */
 .authority-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -694,7 +666,6 @@ h3 {
   margin-bottom: var(--space-3);
 }
 
-/* Timeline dos times (linha com pontos) */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -741,7 +712,6 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* Referências (técnicos) */
 .refs {
   display: flex;
   flex-direction: column;
@@ -768,7 +738,6 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* Links de prova */
 .verify {
   display: flex;
   align-items: center;
@@ -805,7 +774,6 @@ h3 {
   }
 }
 
-/* Sobre */
 .sobre-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -819,7 +787,6 @@ h3 {
   max-width: 65ch;
 }
 
-/* Ficha do jogador */
 .profile-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -861,8 +828,6 @@ h3 {
   }
 }
 
-/* Coaching */
-/* 6 pilares do coaching */
 .topic-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -920,7 +885,6 @@ h3 {
   font-size: 0.875rem;
 }
 
-/* Preços */
 .price-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -938,7 +902,6 @@ h3 {
   background: var(--bg-2);
 }
 
-/* Destaque sutil na primeira sessão */
 .price-card--first {
   border-color: rgba(142, 208, 194, 0.35);
 }
@@ -971,7 +934,6 @@ h3 {
   margin-bottom: var(--space-5);
 }
 
-/* CTA após blocos de conteúdo */
 .coach-cta {
   display: flex;
   align-items: center;
@@ -979,7 +941,6 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* Como funciona */
 .steps {
   margin-bottom: var(--space-5);
 }
@@ -1028,7 +989,6 @@ h3 {
   }
 }
 
-/* Para quem é / não é */
 .pro-list {
   max-width: 720px;
   margin-bottom: var(--space-5);
@@ -1074,7 +1034,6 @@ h3 {
   color: var(--error);
 }
 
-/* Twitch / Conteúdo */
 .twitch-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -1082,7 +1041,6 @@ h3 {
   align-items: center;
 }
 
-/* Caixa padrão para conteúdo futuro */
 .soon-box {
   border: 1px dashed var(--border);
   border-radius: var(--radius-md);
@@ -1109,7 +1067,6 @@ h3 {
   font-size: 0.9375rem;
 }
 
-/* Provas Sociais */
 #depoimentos .soon-box {
   max-width: 720px;
 }
@@ -1124,13 +1081,11 @@ h3 {
   }
 }
 
-/* Botão grande (CTA final) */
 .btn--lg {
   padding: 18px 40px;
   font-size: 1.0625rem;
 }
 
-/* FAQ (accordion acessível) */
 .faq-container {
   max-width: 760px;
 }
@@ -1166,7 +1121,6 @@ h3 {
   color: var(--cyan);
 }
 
-/* Chevron que rotaciona quando aberto */
 .faq-q::after {
   content: '';
   flex-shrink: 0;
@@ -1207,7 +1161,6 @@ h3 {
   color: var(--text-secondary);
 }
 
-/* CTA Final */
 .cta-final {
   text-align: center;
 }
@@ -1220,7 +1173,6 @@ h3 {
   justify-content: center;
 }
 
-/* Formulário (opcional) */
 .contact-form-wrap {
   max-width: 560px;
   margin: var(--space-6) auto 0;
@@ -1295,7 +1247,6 @@ h3 {
   text-align: center;
 }
 
-/* Confirmação de envio (substitui o formulário) */
 .contact-success {
   text-align: center;
   border: 1px solid rgba(61, 220, 132, 0.4);
@@ -1323,7 +1274,6 @@ h3 {
   }
 }
 
-/* Footer */
 .site-footer {
   border-top: 1px solid var(--border);
   padding-block: var(--space-5);
@@ -1379,7 +1329,6 @@ h3 {
   border-color: var(--cyan);
 }
 
-/* Movimento (revelação ao rolar) */
 [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
@@ -1393,12 +1342,10 @@ h3 {
   transform: none;
 }
 
-/* Grupos: os filhos se revelam em sequência (stagger automático) */
 [data-reveal-group] > [data-reveal] {
   transition-delay: calc(var(--i, 0) * 60ms);
 }
 
-/* Barra de progresso de leitura (linha de precisão) */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -1409,7 +1356,6 @@ h3 {
   z-index: 300;
 }
 
-/* Responsividade */
 @media (max-width: 1023px) {
   .nav-list {
     gap: var(--space-2);
@@ -1425,8 +1371,7 @@ h3 {
     display: flex;
   }
 
-  /* No mobile o CTA vira um botão só com o ícone (44px, padrão de toque)
-     para continuar sempre acessível no header */
+  
   .header-cta {
     width: 44px;
     height: 44px;
@@ -1438,7 +1383,6 @@ h3 {
   }
 }
 
-/* Movimento reduzido (acessibilidade) */
 @media (prefers-reduced-motion: reduce) {
   html:not(.force-motion) {
     scroll-behavior: auto;

@@ -1,4 +1,3 @@
-// Área do admin — login e painel
 (() => {
   'use strict';
 
@@ -129,7 +128,6 @@
     mostrarLogin();
   });
 
-  // Já tem token salvo? Tenta abrir direto o painel
   if (token) {
     api('/api/admin/stats')
       .then((dados) => {
