@@ -28,6 +28,10 @@ Não existe "sistema" por trás: quando alguém acessa o site, o navegador baixa
 | `assets/images/` | Fotos e imagens do site | Para trocar imagens |
 | `assets/icons/` | Ícones (Discord, Twitch, setas...) | Raramente |
 | `api/contact.js` | "Porteiro" do formulário — envia mensagens ao seu Discord com segurança | Nunca (segredo protegido) |
+| `api/track.js` | Conta visitas e cliques no site | Nunca |
+| `api/admin/` | Login, estatísticas e sair da área admin | Nunca |
+| `lib/kv.js` | Guarda os números e mensagens no banco de dados (Firebase) | Nunca |
+| `hyoga/area/` | Página secreta do dono — `hyogacoach.vercel.app/hyoga/area` | Raramente |
 | `docs/PRD.md` | Documento do projeto (o "contrato" do site) | Para consultar decisões |
 | `docs/UI-UX-BRIEFING.md` | Manual de design (cores, fontes, regras) | Para consultar |
 | `robots.txt` / `sitemap.xml` | Instruções para o Google | Raramente |
@@ -102,7 +106,7 @@ Não existe "sistema" por trás: quando alguém acessa o site, o navegador baixa
 
 ## 5. Como publicar na internet (Vercel)
 
-O site **já está publicado** em: **https://lol-coaching-alpha.vercel.app** 🎉
+O site **já está publicado** em: **https://hyogacoach.vercel.app** 🎉
 
 **Como funciona a partir de agora:**
 - Qualquer mudança que você fizer nos arquivos e **enviar para o GitHub** (ou que eu fizer por você) é publicada **automaticamente** em ~1 minuto. Nada de passos manuais.
@@ -113,8 +117,11 @@ O site **já está publicado** em: **https://lol-coaching-alpha.vercel.app** �
 |---|---|
 | Painel do projeto | vercel.com → Project **lol-coaching** |
 | Segredo do Discord (webhook) | Project → **Settings** → **Environment Variables** → `DISCORD_WEBHOOK_URL` |
+| Chaves do Firebase (banco de dados da área admin) | Project → **Settings** → **Environment Variables** → `FIREBASE_API_KEY`, `FIREBASE_DB_URL`, `FIREBASE_ADMIN_EMAIL`, `FIREBASE_ADMIN_PASSWORD` |
 | Analytics (visitas) | Project → **Analytics** |
 | Performance | Project → **Speed Insights** |
+
+**Área admin (só sua):** `https://hyogacoach.vercel.app/hyoga/area` — entre com o e-mail e a senha que você recebeu no chat. Lá você vê visitas, cliques e as mensagens do formulário. Para trocar a senha: console.firebase.google.com → projeto **hyoga-admin** → **Authentication** → usuário → editar senha.
 
 **Trocar o webhook do Discord** (se quiser): edite `DISCORD_WEBHOOK_URL` nas variáveis de ambiente e clique em **Redeploy** (botão nos Deployments).
 
@@ -134,11 +141,12 @@ O site **já está publicado** em: **https://lol-coaching-alpha.vercel.app** �
 - [x] Documento do projeto (PRD)
 - [x] Memória técnica (CLAUDE.md)
 - [x] Briefing de UI/UX
-- [ ] Design system (cores, fontes, botões)
-- [ ] Seções da página (Hero, Autoridade, Sobre, Coaching...)
-- [ ] Responsividade e performance
-- [ ] SEO e analytics
-- [ ] Formulário + segurança
-- [ ] Deploy na Vercel
+- [x] Design system (cores, fontes, botões)
+- [x] Seções da página (Hero, Autoridade, Sobre, Coaching...)
+- [x] Responsividade e performance
+- [x] SEO e analytics
+- [x] Formulário + segurança
+- [x] Deploy na Vercel
+- [x] Área admin (login, visitas, cliques e mensagens)
 
-*Última atualização: 2026-08-13*
+*Última atualização: 2026-08-14*
