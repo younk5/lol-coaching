@@ -272,11 +272,11 @@ lol-coaching/
 # Área do admin (adicionada depois do MVP — pedido do dono)
 
 - **URL:** `/hyoga/area` (link discreto no rodapé do site)
-- **Login:** senha única (`ADMIN_PASSWORD`, variável de ambiente na Vercel); token de sessão com validade de 12h; bloqueio de 15 min após 5 tentativas erradas (por IP)
-- **O que mostra:** visitas, cliques (Discord, Twitch, Liquipedia, DeepLol, Instagram, X), envios do formulário e as últimas 100 mensagens recebidas
+- **Login:** Firebase Authentication (e-mail + senha), validado no servidor via REST (a senha nunca passa pelo nosso servidor). Sessão própria de 12h no KV + rate limit por IP (5 tentativas/15 min) + bloqueio de brute force do próprio Firebase
+- **O que mostra:** visitas, cliques (Discord, Twitch, Kick, Liquipedia, DeepLol, Instagram, X), envios do formulário e as últimas 100 mensagens recebidas
 - **Como funciona:** contadores e mensagens ficam no Vercel KV (storage da própria Vercel, conectado ao projeto; sem segredo no código). O site registra visitas/cliques via `/api/track` (sendBeacon, não bloqueia nada); o formulário guarda a mensagem no KV depois de enviá-la ao Discord
 - **Arquivos:** `hyoga/area/` (página), `api/admin/` (login, stats, logout), `api/track.js`, `lib/kv.js`
-- **Segurança:** página com `X-Robots-Tag: noindex`; APIs exigem token; senha nunca está no código
+- **Segurança:** página com `X-Robots-Tag: noindex`; APIs exigem token; chave do Firebase é pública por design (proteção real no Auth + rate limit); variáveis de ambiente: `FIREBASE_API_KEY` (+ KV automático)
 
 ---
 

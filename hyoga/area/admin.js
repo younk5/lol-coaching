@@ -1,6 +1,10 @@
 (() => {
   'use strict';
 
+  // Chave pública do Firebase Web (é pública por design — a proteção
+  // real fica no Firebase Auth + no rate limit do servidor)
+  const FIREBASE_KEY = '';
+
   const $ = (sel) => document.querySelector(sel);
 
   const telaLogin = $('#tela-login');
@@ -44,7 +48,7 @@
   function mostrarLogin() {
     telaPainel.hidden = true;
     telaLogin.hidden = false;
-    $('#senha').focus();
+    $('#email').focus();
   }
 
   function mostrarPainel(dados) {
@@ -86,27 +90,59 @@
     e.preventDefault();
     erroLogin.hidden = true;
 
+    if (!FIREBASE_KEY) {
+      erroLogin.textContent = 'Área admin ainda não configurada (falta a chave do Firebase).';
+      erroLogin.hidden = false;
+      return;
+    }
+
+    const email = $('#email').value.trim();
     const senha = $('#senha').value;
-    if (!senha) return;
+    if (!email || !senha) return;
 
     btnEntrar.disabled = true;
     btnEntrar.textContent = 'Entrando...';
 
     try {
-      const r = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senha }),
-      });
-      const j = await r.json();
+      const rFirebase = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_KEY}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password: senha, returnSecureToken: true }),
+        }
+      );
 
-      if (!r.ok) {
-        erroLogin.textContent = j.error || 'Não foi possível entrar.';
+      if (!rFirebase.ok) {
+        const j = await rFirebase.json().catch(() => ({}));
+        const codigo = j.error?.message || '';
+        if (codigo === 'EMAIL_NOT_FOUND' || codigo === 'INVALID_PASSWORD' || codigo === 'INVALID_LOGIN_CREDENTIALS') {
+          erroLogin.textContent = 'E-mail ou senha incorretos.';
+        } else if (codigo === 'TOO_MANY_ATTEMPTS_TRY_LATER') {
+          erroLogin.textContent = 'Muitas tentativas erradas. O Firebase bloqueou o login por um tempo.';
+        } else {
+          erroLogin.textContent = 'Não foi possível entrar. Tente de novo.';
+        }
         erroLogin.hidden = false;
         return;
       }
 
-      token = j.token;
+      const { idToken } = await rFirebase.json();
+
+      const rSessao = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken }),
+      });
+      const jSessao = await rSessao.json();
+
+      if (!rSessao.ok) {
+        erroLogin.textContent = jSessao.error || 'Não foi possível entrar.';
+        erroLogin.hidden = false;
+        return;
+      }
+
+      token = jSessao.token;
       sessionStorage.setItem(KV_TOKEN, token);
       const dados = await api('/api/admin/stats');
       mostrarPainel(dados);

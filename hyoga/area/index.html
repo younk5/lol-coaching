@@ -19,8 +19,10 @@
         </svg>
       </div>
       <h1>Área do admin</h1>
-      <p class="login-sub">Acesso restrito. Entre com a senha para ver os dados do site.</p>
-      <form id="form-login" autocomplete="off">
+      <p class="login-sub">Acesso restrito. Entre com seu e-mail e senha para ver os dados do site.</p>
+      <form id="form-login" autocomplete="on">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="username" placeholder="seu@email.com">
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required autocomplete="current-password">
         <p class="erro" id="erro-login" role="alert" hidden></p>

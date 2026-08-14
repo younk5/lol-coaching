@@ -9,10 +9,12 @@ function ipDe(req) {
   return (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'desconhecido';
 }
 
-function senhaConfere(digitada, esperada) {
-  const a = crypto.createHash('sha256').update(digitada).digest();
-  const b = crypto.createHash('sha256').update(esperada).digest();
-  return crypto.timingSafeEqual(a, b);
+async function registrarFalha(chave, falhas) {
+  if (falhas === 0) {
+    await kvSet(chave, 1, BLOQUEIO);
+  } else {
+    await kvIncr(chave);
+  }
 }
 
 module.exports = async function handler(req, res) {
@@ -21,15 +23,15 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const esperada = process.env.ADMIN_PASSWORD || '';
-  if (!esperada) {
+  const apiKey = process.env.FIREBASE_API_KEY || '';
+  if (!apiKey) {
     res.status(500).json({ ok: false, error: 'Serviço indisponível.' });
     return;
   }
 
-  let senha = null;
+  let idToken = null;
   try {
-    senha = (typeof req.body === 'string' ? JSON.parse(req.body) : req.body).senha;
+    idToken = (typeof req.body === 'string' ? JSON.parse(req.body) : req.body).idToken;
   } catch {
     res.status(400).json({ ok: false, error: 'Requisição inválida.' });
     return;
@@ -43,13 +45,26 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  if (!senha || !senhaConfere(senha, esperada)) {
-    if (falhas === 0) {
-      await kvSet(chaveFalhas, 1, BLOQUEIO);
-    } else {
-      await kvIncr(chaveFalhas);
-    }
-    res.status(401).json({ ok: false, error: 'Senha incorreta.' });
+  if (!idToken) {
+    await registrarFalha(chaveFalhas, falhas);
+    res.status(401).json({ ok: false, error: 'Não autenticado.' });
+    return;
+  }
+
+  let valido = false;
+  try {
+    const r = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken }),
+    });
+    const j = await r.json();
+    valido = r.ok && Array.isArray(j.users) && j.users.length > 0;
+  } catch {}
+
+  if (!valido) {
+    await registrarFalha(chaveFalhas, falhas);
+    res.status(401).json({ ok: false, error: 'Sessão do Firebase inválida.' });
     return;
   }
 
