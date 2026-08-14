@@ -75,6 +75,10 @@
     x: '<svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg>',
     globo: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg>',
     pulso: '<svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>',
+    link: '<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+    calendario: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+    relogio: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+    trofeu: '<svg viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v7a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 6"/><path d="M17 6h3a3 3 0 0 1-3 6"/></svg>',
   };
 
   let msgsCache = [];
@@ -151,20 +155,56 @@
     const hoje = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
     $('#data-hoje').textContent = hoje.charAt(0).toUpperCase() + hoje.slice(1);
 
+    msgsCache = dados.msgs || [];
+    const agoraMs = Date.now();
+    const diaMs = 86400000;
+    const numeroBr = (v) => Number(v).toLocaleString('pt-BR');
+    const contaRecentes = (dias) => msgsCache.filter((m) => {
+      const t = new Date(m.quando).getTime();
+      return !Number.isNaN(t) && agoraMs - t < dias * diaMs;
+    }).length;
+    const maisComum = (campo) => {
+      const contagem = {};
+      msgsCache.forEach((m) => {
+        const v = m[campo];
+        if (v) contagem[v] = (contagem[v] || 0) + 1;
+      });
+      let topo = null;
+      let max = 0;
+      Object.keys(contagem).forEach((v) => {
+        if (contagem[v] > max) {
+          max = contagem[v];
+          topo = v;
+        }
+      });
+      return topo;
+    };
+
+    const cardDestaque = (nome, icone, numero, sub, classe) => `
+      <div class="stat stat-destaque">
+        <div class="stat-topo">
+          <span class="stat-icone">${icone}</span>
+          <p class="stat-nome">${esc(nome)}</p>
+        </div>
+        <p class="stat-numero ${classe || ''}">${numero}</p>
+        <p class="stat-sub">${esc(sub)}</p>
+      </div>`;
+
     $('#stats-destaque').innerHTML = [
-      ['Visitas', SVGS.olho, 'Acessos ao site'],
-      ['Envios do formulário', SVGS.form, 'Leads recebidos'],
+      ['Visitas', SVGS.olho, numeroBr(stats['Visitas'] || 0), 'Acessos ao site'],
+      ['Cliques em links', SVGS.link, numeroBr(stats['Cliques em links'] || 0), 'Total de cliques nas redes'],
+      ['Envios do formulário', SVGS.form, numeroBr(stats['Envios do formulário'] || 0), 'Leads recebidos'],
     ]
       .filter(([nome]) => nome in stats)
-      .map(([nome, icone, sub]) => `
-        <div class="stat stat-destaque">
-          <div class="stat-topo">
-            <span class="stat-icone">${icone}</span>
-            <p class="stat-nome">${esc(nome)}</p>
-          </div>
-          <p class="stat-numero">${Number(stats[nome]).toLocaleString('pt-BR')}</p>
-          <p class="stat-sub">${sub}</p>
-        </div>`)
+      .map(([nome, icone, numero, sub]) => cardDestaque(nome, icone, numero, sub, ''))
+      .join('');
+
+    $('#grade-leads').innerHTML = [
+      ['Leads em 7 dias', SVGS.calendario, numeroBr(contaRecentes(7)), 'Nos últimos 7 dias', ''],
+      ['Leads em 30 dias', SVGS.calendario, numeroBr(contaRecentes(30)), 'Nos últimos 30 dias', ''],
+      ['Última mensagem', SVGS.relogio, msgsCache.length ? tempoRelativo(msgsCache[0].quando) : '—', 'Tempo desde o último contato', 'texto'],
+    ]
+      .map(([nome, icone, numero, sub, classe]) => cardDestaque(nome, icone, numero, sub, classe))
       .join('');
 
     $('#grade-redes').innerHTML = REDES
@@ -173,11 +213,24 @@
         <div class="stat stat-rede">
           <span class="stat-icone">${SVGS[nome.toLowerCase()] || SVGS.olho}</span>
           <p class="stat-nome">${esc(nome)}</p>
-          <p class="stat-numero">${Number(stats[nome]).toLocaleString('pt-BR')}</p>
+          <p class="stat-numero">${numeroBr(stats[nome])}</p>
         </div>`)
       .join('');
 
-    msgsCache = dados.msgs || [];
+    const eloTopo = maisComum('elo');
+    $('#grade-perfil').innerHTML = [
+      ['Elo mais comum', SVGS.trofeu, ELO_LABEL[eloTopo] || '—', eloTopo ? ELO_COR[eloTopo] : ''],
+      ['Servidor mais comum', SVGS.globo, SERVIDOR_LABEL[maisComum('servidor')] || '—', ''],
+      ['Experiência mais comum', SVGS.pulso, EXP_LABEL[maisComum('experiencia')] || '—', ''],
+    ]
+      .map(([nome, icone, valor, cor]) => `
+        <div class="stat stat-perfil">
+          <span class="stat-icone">${icone}</span>
+          <p class="stat-nome">${esc(nome)}</p>
+          <p class="stat-perfil-valor" ${cor ? `style="--cor-elo:${cor}"` : ''}>${esc(valor)}</p>
+        </div>`)
+      .join('');
+
     const total = msgsCache.length;
     $('#msgs-sub').textContent = total === 1 ? '1 mensagem' : `${total} mensagens`;
     aplicarFiltro();

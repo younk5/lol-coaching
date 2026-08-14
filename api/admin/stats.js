@@ -41,6 +41,9 @@ module.exports = async function handler(req, res) {
     stats[nome] = Number(resKv[i]?.result || 0);
   });
 
+  const CLICKS = [1, 2, 3, 4, 5, 6, 7];
+  stats['Cliques em links'] = CLICKS.reduce((total, i) => total + Number(resKv[i]?.result || 0), 0);
+
   let msgs = [];
   try {
     msgs = (resKv[resKv.length - 1]?.result || []).map((m) => JSON.parse(m));

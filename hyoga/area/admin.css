@@ -409,8 +409,16 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.grade-leads {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .grade-redes {
   grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+}
+
+.grade-perfil {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .stat {
@@ -491,6 +499,11 @@ button {
   margin-top: 8px;
 }
 
+.stat-numero.texto {
+  font-size: 1.25rem;
+  color: var(--texto);
+}
+
 .stat-rede .stat-icone {
   width: 30px;
   height: 30px;
@@ -502,6 +515,21 @@ button {
   font-size: 1.4rem;
   color: var(--texto);
   margin-top: 8px;
+}
+
+.stat-perfil .stat-icone {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  margin-bottom: 12px;
+}
+
+.stat-perfil-valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cor-elo, var(--texto));
+  margin-top: 8px;
+  line-height: 1.2;
 }
 
 .secao {
