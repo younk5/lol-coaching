@@ -63,7 +63,7 @@ module.exports = async function handler(req, res) {
 
     try {
       await kvPipeline([
-        ['RPUSH', 'msgs', JSON.stringify({ quando: new Date().toISOString(), ...data })],
+        ['RPUSH', 'msgs', JSON.stringify({ quando: new Date().toISOString(), visto: false, ...data })],
         ['LTRIM', 'msgs', '-100', '-1'],
       ]);
     } catch {}

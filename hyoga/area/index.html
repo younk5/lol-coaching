@@ -114,9 +114,12 @@
             <h2 id="titulo-msgs">Mensagens do formulário</h2>
             <p class="msgs-sub" id="msgs-sub"></p>
           </div>
-          <div class="busca">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            <input type="search" id="busca-msgs" placeholder="Filtrar mensagens" aria-label="Filtrar mensagens">
+          <div class="msgs-topo-acoes">
+            <button type="button" id="filtro-nao-vistas" class="filtro-chip" aria-pressed="false">Não lidas</button>
+            <div class="busca">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+              <input type="search" id="busca-msgs" placeholder="Filtrar mensagens" aria-label="Filtrar mensagens">
+            </div>
           </div>
         </div>
         <div class="vazio" id="sem-msgs" hidden>
