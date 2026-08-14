@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
   <title>Área do admin — Hyoga</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/hyoga/area/admin.css">
 </head>
 <body>
+  <div class="brilho" aria-hidden="true"></div>
+
   <main class="wrap">
 
-    
     <section id="tela-login" class="card login" hidden>
       <div class="logo-admin" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="40" height="40">
+        <svg viewBox="0 0 64 64" width="46" height="46">
           <path d="M18 46 L34 18" stroke="#8ED0C2" stroke-width="5" stroke-linecap="round" fill="none"/>
           <path d="M46 46 L30 18" stroke="#F2F5F7" stroke-width="5" stroke-linecap="round" fill="none" opacity=".45"/>
         </svg>
@@ -21,29 +26,93 @@
       <h1>Área do admin</h1>
       <p class="login-sub">Acesso restrito. Entre com seu e-mail e senha para ver os dados do site.</p>
       <form id="form-login" autocomplete="on">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required autocomplete="username" placeholder="seu@email.com">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required autocomplete="current-password">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="username" placeholder="seu@email.com">
+        </div>
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <div class="input-senha">
+            <input type="password" id="senha" name="senha" required autocomplete="current-password" placeholder="sua senha">
+            <button type="button" id="btn-ver-senha" class="ver-senha" aria-label="Mostrar senha" aria-pressed="false">
+              <svg class="icone-olho" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icone-olho-fechado" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>
+            </button>
+          </div>
+        </div>
         <p class="erro" id="erro-login" role="alert" hidden></p>
         <button type="submit" id="btn-entrar">Entrar</button>
       </form>
+      <p class="login-voltar">Voltar ao <a href="/">site</a></p>
     </section>
 
-    
     <section id="tela-painel" hidden>
       <header class="painel-topo">
-        <p class="marca">HYOGA — Área do admin</p>
-        <button type="button" id="btn-sair" class="botao-secundario">Sair</button>
+        <div class="marca">
+          <svg class="marca-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M18 46 L34 18" stroke="#8ED0C2" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <path d="M46 46 L30 18" stroke="#F2F5F7" stroke-width="5" stroke-linecap="round" fill="none" opacity=".45"/>
+          </svg>
+          <div class="marca-texto">
+            <p class="marca-nome">HYOGA</p>
+            <p class="marca-sub">Área do admin</p>
+          </div>
+        </div>
+        <div class="topo-acoes">
+          <button type="button" id="btn-atualizar" class="botao-icone" aria-label="Atualizar dados" title="Atualizar dados">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          </button>
+          <button type="button" id="btn-sair" class="botao-secundario">Sair</button>
+        </div>
       </header>
 
-      <h1>Visão geral</h1>
+      <div class="cabecalho-painel">
+        <div>
+          <h1>Visão geral</h1>
+          <p class="data-hoje" id="data-hoje"></p>
+        </div>
+        <p class="ultima-atualizacao" id="ultima-atualizacao" hidden></p>
+      </div>
 
-      <div class="grade" id="grade-stats"></div>
+      <div class="skeleton" id="skeleton-stats" aria-hidden="true">
+        <div class="sk sk-destaque"></div>
+        <div class="sk sk-destaque"></div>
+        <div class="sk sk-linha"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+        <div class="sk sk-rede"></div>
+      </div>
 
-      <h2>Mensagens do formulário</h2>
-      <p class="vazio" id="sem-msgs" hidden>Nenhuma mensagem recebida ainda. As mensagens enviadas pelo formulário do site aparecem aqui.</p>
-      <div class="lista" id="lista-msgs"></div>
+      <div id="conteudo-stats" hidden>
+        <div class="grade grade-destaque" id="stats-destaque"></div>
+        <div class="secao">
+          <h2>Redes e links</h2>
+          <div class="grade grade-redes" id="grade-redes"></div>
+        </div>
+      </div>
+
+      <section class="secao secao-msgs" aria-labelledby="titulo-msgs">
+        <div class="msgs-topo">
+          <div>
+            <h2 id="titulo-msgs">Mensagens do formulário</h2>
+            <p class="msgs-sub" id="msgs-sub"></p>
+          </div>
+          <div class="busca">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" id="busca-msgs" placeholder="Filtrar mensagens" aria-label="Filtrar mensagens">
+          </div>
+        </div>
+        <div class="vazio" id="sem-msgs" hidden>
+          <svg class="vazio-icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+          <p class="vazio-titulo" id="sem-msgs-titulo">Nenhuma mensagem ainda</p>
+          <p class="vazio-texto" id="sem-msgs-texto">As mensagens enviadas pelo formulário do site aparecem aqui.</p>
+        </div>
+        <div class="lista" id="lista-msgs"></div>
+      </section>
     </section>
 
   </main>
