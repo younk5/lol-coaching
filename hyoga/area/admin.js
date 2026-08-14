@@ -3,7 +3,7 @@
 
   // Chave pública do Firebase Web (é pública por design — a proteção
   // real fica no Firebase Auth + no rate limit do servidor)
-  const FIREBASE_KEY = '';
+  const FIREBASE_KEY = 'AIzaSyDcVErt8QYPhHecLa622-XeuSuhT6CZ6jQ';
 
   const $ = (sel) => document.querySelector(sel);
 
