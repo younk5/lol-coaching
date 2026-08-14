@@ -1,6 +1,6 @@
 // api/admin/logout.js — encerra a sessão da área do admin
 
-const { kvDel } = require('../lib/kv.js');
+const { kvDel } = require('../../lib/kv.js');
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {

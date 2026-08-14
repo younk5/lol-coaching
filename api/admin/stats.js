@@ -3,7 +3,7 @@
 // Devolve os contadores (visitas, cliques) e as últimas mensagens
 // recebidas pelo formulário.
 
-const { kvGet, kvPipeline } = require('../lib/kv.js');
+const { kvGet, kvPipeline } = require('../../lib/kv.js');
 
 const CONTADORES = [
   ['stats:pv', 'Visitas'],

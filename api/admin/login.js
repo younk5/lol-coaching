@@ -4,7 +4,7 @@
 // Bloqueia por 15 minutos após 5 tentativas erradas (por IP).
 
 const crypto = require('crypto');
-const { kvGet, kvSet, kvIncr } = require('../lib/kv.js');
+const { kvGet, kvSet, kvIncr } = require('../../lib/kv.js');
 
 const MAX_TENTATIVAS = 5;
 const BLOQUEIO = 900; // 15 minutos
